@@ -1,0 +1,17 @@
+---
+interface Props {
+  name: string;
+  url: string;
+}
+
+const { name, url } = Astro.props;
+---
+
+<li>
+  <a
+    class="text-light-grey hover:text-primary hover:underline transition-all duration-100 flex gap-1 w-fit architect_items"
+    href={url}
+  >
+    {"> "} {name}</a
+  >
+</li>

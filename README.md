@@ -1,4 +1,6 @@
-# Astro Starter Kit: Basics
+# MUPA: Mujeres, patrimonio y arquitectura local.
+
+
 
 ```sh
 npm create astro@latest -- --template basics
