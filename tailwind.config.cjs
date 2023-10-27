@@ -16,28 +16,25 @@ module.exports = {
         fuchsia: '#ad60a3'
       },
       fontFamily: {
-        'source-code': ['Source Code Pro', 'monospace'],
-        helvetica: ['Helvetica Neue', 'Helvetica', 'sans-serif'],
-        'helvetica-light': ['Helvetica Neue', 'Helvetica Light', 'sans-serif'],
-        'helvetica-bold': ['Helvetica Neue', 'Helvetica Bold', 'sans-serif']
+        'source-code': ['Source Code Pro', 'monospace']
       },
       animation: {
-        blob: 'blob 5s linear infinite alternate',
+        background: 'background 5s linear infinite alternate',
         shapes: 'shapes 3s ease-in-out infinite alternate'
       },
       keyframes: {
-        blob: {
+        background: {
           '0%': {
             transform: 'translate(0px, 0px) scale(1)'
           },
           '33%': {
-            transform: 'translate(80px, -20px) scale(1.3)'
+            transform: 'translate(0, 0) scale(1.4)'
           },
           '66%': {
-            transform: 'translate(-80px, 50px) scale(1)'
+            transform: 'translate(0, 0) scale(1)'
           },
           '100%': {
-            transform: ' translate(0px, 0px)scale(0.8)'
+            transform: ' translate(0, 0px)scale(1.2)'
           }
         },
         shapes: {

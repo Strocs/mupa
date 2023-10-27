@@ -9,7 +9,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
@@ -26,36 +26,49 @@ const { title } = Astro.props;
     />
     <ViewTransitions fallback="none" />
   </head>
-  <body class="min-h-screen h-full w-full font-helvetica relative">
+  <body
+    class="h-full w-full min-h-[100dvh] p-4 sm:p-8 flex items-center justify-center flex-col"
+  >
     <slot />
     <style is:global>
       @font-face {
         font-family: "Helvetica";
         font-style: normal;
-        font-weight: 400;
-        src: url("fonts/HelveticaNeueCyr-Medium.woff2") format("woff2"); /* Super Modern Browsers */
-        /* url('lato-v20-latin-regular.woff') format('woff'), Modern Browsers */
-        /* url('lato-v20-latin-regular.ttf') format('truetype'), Safari, Android, iOS */
+        font-weight: 100;
+        font-display: swap;
+        src: url("fonts/HelveticaNeueCyr-UltraLight.woff2") format("woff2");
       }
       @font-face {
-        font-family: "Helvetica Light";
+        font-family: "Helvetica";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("fonts/HelveticaNeueCyr-Medium.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Helvetica";
+        font-style: normal;
+        font-weight: 200;
+        font-display: swap;
+        src: url("fonts/HelveticaNeueCyr-Light.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Helvetica";
         font-style: normal;
         font-weight: 300;
-        src: url("fonts/HelveticaNeueCyr-Light.woff2") format("woff2"); /* Super Modern Browsers */
-        /* url('lato-v20-latin-regular.woff') format('woff'), Modern Browsers */
-        /* url('lato-v20-latin-regular.ttf') format('truetype'), Safari, Android, iOS */
+        font-display: swap;
+        src: url("fonts/HelveticaNeueCyr-Thin.woff2") format("woff2");
       }
       @font-face {
-        font-family: "Helvetica Bold";
+        font-family: "Helvetica";
         font-style: normal;
         font-weight: 700;
-        src: url("fonts/HelveticaNeueCyr-Bold.woff2") format("woff2"); /* Super Modern Browsers */
-        /* url('lato-v20-latin-regular.woff') format('woff'), Modern Browsers */
-        /* url('lato-v20-latin-regular.ttf') format('truetype'), Safari, Android, iOS */
+        font-display: swap;
+        src: url("fonts/HelveticaNeueCyr-Bold.woff2") format("woff2");
       }
 
       html {
-        height: 100%;
+        font-family: "Helvetica", Helvetica, Arial, system-ui, sans-serif;
       }
     </style>
   </body>
