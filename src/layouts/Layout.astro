@@ -12,12 +12,15 @@ const { title } = Astro.props;
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta
+      name="description"
+      content="Visibilizando el legado femenino en la producción arquitectónica de las ciudades de La Serena y Coquimbo."
+    />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={"MUPA | " + Astro.generator} />
+    <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <title>{title}</title>
+    <title>{"MUPA | " + title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,17 +30,20 @@ const { title } = Astro.props;
     <ViewTransitions fallback="none" />
   </head>
   <body
-    class="h-full w-full min-h-[100dvh] p-4 sm:p-8 flex items-center justify-center flex-col"
+    class="h-full w-full min-h-[100dvh] p-4 sm:p-8 flex items-center justify-center flex-col font-helvetica"
   >
-    <slot />
+    <div
+      class="w-full max-w-screen-2xl h-full bg-white rounded-3xl flex flex-col justify-between items-center flex-grow px-12 py-8 transition-all duration-200"
+      transition:name="main-bg"
+    >
+      <slot />
+    </div>
     <style is:global>
-      @font-face {
-        font-family: "Helvetica";
-        font-style: normal;
-        font-weight: 100;
-        font-display: swap;
-        src: url("fonts/HelveticaNeueCyr-UltraLight.woff2") format("woff2");
+      html {
+        background: url("/background.png") no-repeat fixed bottom;
+        background-size: cover;
       }
+
       @font-face {
         font-family: "Helvetica";
         font-style: normal;
@@ -48,14 +54,14 @@ const { title } = Astro.props;
       @font-face {
         font-family: "Helvetica";
         font-style: normal;
-        font-weight: 200;
+        font-weight: 300;
         font-display: swap;
         src: url("fonts/HelveticaNeueCyr-Light.woff2") format("woff2");
       }
       @font-face {
         font-family: "Helvetica";
         font-style: normal;
-        font-weight: 300;
+        font-weight: 200;
         font-display: swap;
         src: url("fonts/HelveticaNeueCyr-Thin.woff2") format("woff2");
       }
@@ -65,10 +71,6 @@ const { title } = Astro.props;
         font-weight: 700;
         font-display: swap;
         src: url("fonts/HelveticaNeueCyr-Bold.woff2") format("woff2");
-      }
-
-      html {
-        font-family: "Helvetica", Helvetica, Arial, system-ui, sans-serif;
       }
     </style>
   </body>

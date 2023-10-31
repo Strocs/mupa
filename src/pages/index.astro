@@ -1,70 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SectionNameItem from "@components/SectionNameItem.astro";
 import Logo from "@components/Logo.astro";
-import NavLink from "@components/NavLink.astro";
 
-import { ARCHITECTS } from "../data/architects.js";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
 ---
 
 <Layout title="Mujeres, patrimonio y arquitectura local">
-  <div
-    class="w-full max-w-screen-2xl bg-white rounded-3xl grid flex-grow p-8 transition-all duration-200"
-    transition:name="main-bg"
-  >
-    <header>
-      <nav class="flex justify-end gap-8 text-dark-grey text-xl">
-        <NavLink title="Inicio" href="/" />
-        <NavLink title="Proyecto" href="/" />
-        <NavLink title="Arquitectas" href="/" />
-        <NavLink title="Equipo" href="/" />
-      </nav>
-    </header>
-    <main class="w-full flex items-center justify-center flex-wrap self-start">
-      <Logo size="large" />
-      <nav class="-ml-8 grid gap-2">
-        <h1 class="text-3xl text-light-grey">
-          <strong class="text-dark-grey text-5xl">arquitectas</strong>
-          <br /> referentes
-        </h1>
-        <ul class="flex flex-col gap-1 font-source-code ml-12">
-          {
-            ARCHITECTS.map((architect) => (
-              <SectionNameItem name={architect.name} url={architect.url} />
-            ))
-          }
-        </ul>
-      </nav>
-    </main>
-  </div>
+  <Header />
+  <Logo size="large" />
+  <Footer />
 </Layout>
-
-<style>
-  body {
-    background: url("/background.png") no-repeat fixed bottom;
-    background-size: cover;
-  }
-</style>
-
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const shapes = document.querySelectorAll(".shapes");
-    const items = document.querySelectorAll(".architect_items");
-
-    items.forEach((item, index) => {
-      item.addEventListener("mouseover", () => {
-        shapes.forEach((shape, i) => {
-          if (index !== i) {
-            shape.classList.add("focused");
-          }
-        });
-      });
-
-      item.addEventListener("mouseout", () => {
-        shapes.forEach((shape) => {
-          shape.classList.remove("focused");
-        });
-      });
-    });
-  });
-</script>

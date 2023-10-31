@@ -16,11 +16,12 @@ module.exports = {
         fuchsia: '#ad60a3'
       },
       fontFamily: {
-        'source-code': ['Source Code Pro', 'monospace']
+        'source-code': ['Source Code Pro', 'monospace'],
+        helvetica: ['Helvetica', 'Helvetica Neue', 'sans-serif']
       },
       animation: {
         background: 'background 5s linear infinite alternate',
-        shapes: 'shapes 3s ease-in-out infinite alternate'
+        shapes: 'shapes 2s ease-in-out infinite alternate'
       },
       keyframes: {
         background: {
@@ -38,14 +39,11 @@ module.exports = {
           }
         },
         shapes: {
-          '0%': {
-            transform: 'translate3d(0, 0, 0)'
+          from: {
+            transform: 'translate(0, 0)'
           },
-          '50%': {
-            transform: 'translate3d(5px, -5px, 5px)'
-          },
-          '100%': {
-            transform: ' translate3d(0, 0, 0)'
+          to: {
+            transform: 'translate(8px, -8px)'
           }
         }
       }
