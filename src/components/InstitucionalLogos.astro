@@ -1,3 +1,37 @@
-<ul>
-  <li></li>
-</ul>
+---
+import Arquitomicas from "./icons/Arquitomicas.astro";
+import CA from "./icons/CA.astro";
+import LaSerena from "./icons/LaSerena.astro";
+import MINCAP from "./icons/MINCAP.astro";
+import UCENTRAL from "./icons/UCENTRAL.astro";
+import ULS from "./icons/ULS.astro";
+---
+
+<section
+  class="text-dark-grey flex flex-col font-source-code items-start gap-2 self-end"
+>
+  <!-- <p>Colabora</p>
+  <ul class="flex gap-4 w-fit items-center justify-center">
+    <li>
+      <MINCAP className="h-16" />
+    </li>
+  </ul> -->
+  <p class="text-light-grey">Colaboran</p>
+  <ul class="flex gap-6 w-full items-center justify-start flex-wrap">
+    <li class="w-14 md:w-20">
+      <Arquitomicas />
+    </li>
+    <li>
+      <LaSerena />
+    </li>
+    <li class="w-24 md:w-44">
+      <CA />
+    </li>
+    <li class="w-20 md:w-24">
+      <UCENTRAL />
+    </li>
+    <li class="w-32 md:w-44">
+      <ULS />
+    </li>
+  </ul>
+</section>
