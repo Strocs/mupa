@@ -7,10 +7,13 @@ interface SizeVariants {
 
 const { size = "mini" }: SizeVariants = Astro.props;
 
-let sizeStyle = size === "mini" ? "max-w-[6rem]" : "max-w-[30rem]";
+let sizeStyle =
+  size === "mini"
+    ? "max-w-[6rem]"
+    : "max-w-[14rem] md:max-w-[24rem] xl:max-w-[30rem]";
 ---
 
-<div class="flex items-center w-full justify-center">
+<div class="flex items-center w-full sm:justify-center">
   <a
     href="/"
     class=`w-full ${sizeStyle} flex flex-col items-end gap-4 group flex-shrink-0`
@@ -46,12 +49,10 @@ let sizeStyle = size === "mini" ? "max-w-[6rem]" : "max-w-[30rem]";
     </svg>
     {
       size === "large" && (
-        <div class="w-[46%] grid gap-4">
-          <p class="">
-            <strong class="text-light-grey">
-              Mujeres, patrimonio y arquitectura local.
-            </strong>
-          </p>
+        <div class="md:w-[46%] grid gap-4">
+          <strong class="text-light-grey">
+            Mujeres, patrimonio y arquitectura local.
+          </strong>
           <p class="font-light text-sm text-light-grey max-w-[10rem]">
             Presencia femenina en las ciudades de La Serena y Coquimbo.
           </p>
@@ -59,7 +60,7 @@ let sizeStyle = size === "mini" ? "max-w-[6rem]" : "max-w-[30rem]";
       )
     }
   </a>
-  <div class="flex-shrink-0">
+  <div class="flex-shrink-0 -ml-12 md:-ml-0">
     <MupaShapes />
   </div>
 </div>
