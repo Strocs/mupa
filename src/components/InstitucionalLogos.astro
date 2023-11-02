@@ -8,30 +8,36 @@ import ULS from "./icons/ULS.astro";
 ---
 
 <section
-  class="text-dark-grey flex flex-col font-source-code items-start gap-2 self-end"
+  class="text-dark-grey flex flex-col md:flex-row font-source-code md:items-start gap-4 md:gap-16 self-end"
 >
-  <!-- <p>Colabora</p>
-  <ul class="flex gap-4 w-fit items-center justify-center">
-    <li>
-      <MINCAP className="h-16" />
-    </li>
-  </ul> -->
-  <p class="text-light-grey">Colaboran</p>
-  <ul class="flex gap-6 w-full items-center justify-start flex-wrap">
-    <li class="w-14 md:w-20">
-      <Arquitomicas />
-    </li>
-    <li>
-      <LaSerena />
-    </li>
-    <li class="w-24 md:w-44">
-      <CA />
-    </li>
-    <li class="w-20 md:w-24">
-      <UCENTRAL />
-    </li>
-    <li class="w-32 md:w-44">
-      <ULS />
-    </li>
-  </ul>
+  <div class="flex flex-col gap-2 md:gap-4">
+    <p class="text-light-grey text-center">Financia</p>
+    <ul class="flex gap-6 w-full items-end justify-center flex-wrap">
+      <li>
+        <MINCAP className="h-12 lg:h-14" />
+      </li>
+    </ul>
+  </div>
+  <div class="flex flex-col gap-2 md:gap-6 items-center md:items-start">
+    <p class="text-light-grey text-center">Colaboran</p>
+    <ul
+      class="flex gap-x-4 gap-y-2 w-full items-center justify-center md:justify-start flex-wrap"
+    >
+      <li class="w-14 lg:w-20">
+        <Arquitomicas />
+      </li>
+      <li>
+        <LaSerena />
+      </li>
+      <li class="w-32 lg:w-44">
+        <CA />
+      </li>
+      <li class="w-20 lg:w-24">
+        <UCENTRAL />
+      </li>
+      <li class="w-32 lg:w-44">
+        <ULS />
+      </li>
+    </ul>
+  </div>
 </section>
