@@ -1,8 +1,16 @@
 ---
-import SocialMediaLinks from "./SocialMediaLinks.astro";
+import Logo from "./Logo.astro";
+import NavLink from "./NavLink.astro";
+
+const { size } = Astro.props;
 ---
 
-<header class="w-fit px-16 h-16 flex flex-col gap-2 items-center">
-  <h2 class="font-source-code text-2xl text-dark-grey">Próximamente</h2>
-  <SocialMediaLinks />
+<header class=`w-full h-10 flex items-center justify-between`>
+  <Logo />
+  <nav class="flex gap-6 flex-shrink-0">
+    <NavLink href="/">inicio</NavLink>
+    <NavLink href="/">el proyecto</NavLink>
+    <NavLink href="/">arquitectas</NavLink>
+    <NavLink href="/">equipo</NavLink>
+  </nav>
 </header>

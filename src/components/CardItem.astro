@@ -1,0 +1,46 @@
+---
+import { nameToPath } from "../utils/nameToPath.ts";
+import { Image } from "astro:assets";
+
+interface Props {
+  img: ImageMetadata;
+  name: string;
+  color: string;
+  id: string;
+}
+
+interface Colors {
+  [color: string]: { bg: string };
+}
+
+const { img, name, color, id } = Astro.props;
+const href = nameToPath({ name });
+
+const colors: Colors = {
+  yellow: { bg: "bg-yellow" },
+  red: { bg: "bg-red" },
+  blue: { bg: "bg-blue" },
+  fuchsia: { bg: "bg-fuchsia" },
+  ocher: { bg: "bg-ocher" },
+  purple: { bg: "bg-purple" },
+};
+---
+
+<li
+  id={"card-" + color}
+  class=`architect_items relative w-full max-w-[8rem] group h-full aspect-[9/14] rounded-xl overflow-hidden shadow-md ${colors[color].bg}`
+>
+  <a href={href} class="h-full w-full">
+    <h2
+      class="absolute bottom-2 left-2 right-2 text-xl leading-none text-white font-black z-10 font-source-code"
+      transition:name=`name-${id}`
+    >
+      {name}
+    </h2>
+    <Image
+      src={img}
+      alt=`Imágen de la Arquitecta ${name}`
+      class="h-full w-full object-cover scale-105 group-hover:scale-110 transition-transform duration-150"
+    />
+  </a>
+</li>

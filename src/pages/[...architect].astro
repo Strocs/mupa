@@ -1,0 +1,97 @@
+---
+import { nameToPath } from "src/utils/nameToPath";
+import { LEAD_ARCHITECTS } from "../data/lead-architects";
+import Layout from "src/layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import { Image } from "astro:assets";
+
+export function getStaticPaths() {
+  return LEAD_ARCHITECTS.map((architect) => {
+    return {
+      params: { architect: nameToPath({ name: architect.short_name }) },
+      props: architect,
+    };
+  });
+}
+
+const {
+  id,
+  name,
+  birth_date,
+  birth_place,
+  university,
+  description,
+  quote,
+  color,
+  main_img,
+  images,
+  videoURL,
+} = Astro.props;
+---
+
+<Layout title={name}>
+  <Header />
+  <main
+    class="flex flex-col items-start h-full w-full gap-10 mt-20 overflow-hidden"
+  >
+    <h1 class="text-6xl font-bold text-dark-grey" transition:name=`name-${id}`>
+      {name}
+    </h1>
+    <section
+      class="w-full flex gap-4 justify-between overflow-y-scroll relative scrollbar-hide font-source-code text-dark-grey"
+    >
+      <article class="max-w-lg h-full flex flex-col gap-4">
+        <ul>
+          <li>
+            <h3><strong>Fecha de nacimiento:</strong> {" "}{birth_date}</h3>
+          </li>
+          <li>
+            <h3><strong>Lugar de nacimiento:</strong> {" "}{birth_place}</h3>
+          </li>
+          <li>
+            <h3>
+              <strong>Estudios de Arquitectura:</strong>
+              {" "}{university}
+            </h3>
+          </li>
+        </ul>
+        <h3 class="text-2xl font-bold">Trayectoria</h3>
+        <p>
+          {description}
+        </p>
+        <q class="italic leading-tight">
+          {quote}
+        </q>
+        <h3 class="text-2xl font-bold">Documentación</h3>
+        <ul class="flex gap-4 flex-wrap">
+          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
+          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
+          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
+          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
+          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
+          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
+          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
+          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
+        </ul>
+      </article>
+      <Image
+        alt=`Imagen de ${name}`
+        src={main_img}
+        class="aspect-video object-cover rounded-xl w-full max-w-4xl h-fit bg-light-grey flex-shrink-0 sticky right-0 top-0"
+      />
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>

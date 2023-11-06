@@ -21,9 +21,17 @@ module.exports = {
       },
       animation: {
         background: 'background 5s linear infinite alternate',
-        shapes: 'shapes 2s ease-in-out infinite alternate'
+        shapes: 'shapes 2s ease-in-out infinite alternate',
+        'bounce-2': 'bounce-2 1s ease-in-out'
       },
       keyframes: {
+        'bounce-2': {
+          '0%': { transform: 'translateY(0)' },
+          '30%': { transform: 'translateY(-30px)' },
+          '50%': { transform: 'translateY(0)' },
+          '70%': { transform: 'translateY(-20px)' },
+          '100%': { transform: 'translateY(0)' }
+        },
         background: {
           '0%': {
             transform: 'translate(0px, 0px) scale(1)'
