@@ -2,12 +2,12 @@
 import Logo from "./Logo.astro";
 import NavLink from "./NavLink.astro";
 
-const { size } = Astro.props;
+const { logo = true } = Astro.props;
 ---
 
-<header class=`w-full h-10 flex items-center justify-between`>
-  <Logo />
-  <nav class="flex gap-6 flex-shrink-0">
+<header class="w-full grid grid-cols-2 place-content-between relative">
+  {logo && <Logo />}
+  <nav class="flex gap-6 flex-shrink-0 w-fit absolute right-0">
     <NavLink href="/">inicio</NavLink>
     <NavLink href="/">el proyecto</NavLink>
     <NavLink href="/">arquitectas</NavLink>

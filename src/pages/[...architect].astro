@@ -4,6 +4,7 @@ import { LEAD_ARCHITECTS } from "../data/lead-architects";
 import Layout from "src/layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
+import Paragraph from "@components/Paragraph.astro";
 
 export function getStaticPaths() {
   return LEAD_ARCHITECTS.map((architect) => {
@@ -32,13 +33,16 @@ const {
 <Layout title={name}>
   <Header />
   <main
-    class="flex flex-col items-start h-full w-full gap-10 mt-20 overflow-hidden"
+    class="flex flex-col items-start h-full w-full gap-10 mt-10 overflow-hidden"
   >
-    <h1 class="text-6xl font-bold text-dark-grey" transition:name=`name-${id}`>
+    <h1
+      class="text-[3.5rem] max-w-xl leading-none font-black text-dark-grey font-source-code"
+      transition:name=`name-${id}`
+    >
       {name}
     </h1>
     <section
-      class="w-full flex gap-4 justify-between overflow-y-scroll relative scrollbar-hide font-source-code text-dark-grey"
+      class="w-full flex gap-4 justify-between overflow-y-scroll relative scrollbar-hide font-light text-primary"
     >
       <article class="max-w-lg h-full flex flex-col gap-4">
         <ul>
@@ -56,10 +60,8 @@ const {
           </li>
         </ul>
         <h3 class="text-2xl font-bold">Trayectoria</h3>
-        <p>
-          {description}
-        </p>
-        <q class="italic leading-tight">
+        <Paragraph description={description} />
+        <q class="italic leading-tight font-source-code font-normal text-sm">
           {quote}
         </q>
         <h3 class="text-2xl font-bold">Documentación</h3>
@@ -81,7 +83,7 @@ const {
       />
     </section>
   </main>
-  <Footer />
+  <!-- <Footer /> -->
 </Layout>
 
 <style>

@@ -1,0 +1,17 @@
+---
+import { LEAD_ARCHITECTS } from "src/data/lead-architects";
+import CardItem from "./CardItem.astro";
+---
+
+<ul class="flex flex-wrap gap-4 group">
+  {
+    LEAD_ARCHITECTS.map((architect) => (
+      <CardItem
+        name={architect.short_name}
+        img={architect.main_img}
+        color={architect.color}
+        id={architect.id}
+      />
+    ))
+  }
+</ul>
