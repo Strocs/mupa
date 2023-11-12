@@ -1,0 +1,25 @@
+---
+interface Props {
+  list: Array<string>;
+}
+
+const { list } = Astro.props;
+---
+
+<ul
+  role="list"
+  slot="dropdown"
+  class="absolute rounded-md h-0
+flex-col items-end group-hover/dropdown:h-[12rem] right-0 overflow-hidden flex whitespace-nowrap transition-all duration-200 bg-white"
+>
+  {
+    list.map((item) => (
+      <li class="w-fit h-full text-dark-grey font-source-code group/dd-item p-1">
+        <a href={item.replaceAll(" ", "-").toLowerCase()}>
+          {item}{" "}
+          <div class="bg-light-grey h-[1px] w-0 group-hover/dd-item:w-full transition-[width] duration-150" />
+        </a>
+      </li>
+    ))
+  }
+</ul>
