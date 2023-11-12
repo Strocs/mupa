@@ -1,4 +1,5 @@
 ---
+import { nameToPath } from "@utils/nameToPath";
 interface Props {
   list: Array<string>;
 }
@@ -15,7 +16,7 @@ flex-col items-end group-hover/dropdown:h-[13rem] right-0 overflow-hidden flex w
   {
     list.map((item) => (
       <li class="w-fit h-full text-dark-grey font-source-code group/dropdown-item p-1 group-hover/dropdown-list:opacity-50 hover:!opacity-100">
-        <a href={"referentes/" + item.replaceAll(" ", "-").toLowerCase()}>
+        <a href={nameToPath({ name: item })}>
           {item}
           <div class="bg-light-grey h-[1px] w-0 group-hover/dropdown-item:w-full transition-[width] duration-150" />
         </a>

@@ -6,6 +6,18 @@
     "paths": {
       "@components/*": [
         "src/components/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@data/*": [
+        "src/data/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
       ]
     }
   }
