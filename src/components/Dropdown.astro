@@ -10,7 +10,7 @@ const { list } = Astro.props;
   role="list"
   slot="dropdown"
   class="absolute rounded-md h-0
-flex-col items-end group-hover/dropdown:h-[13rem] right-0 overflow-hidden flex whitespace-nowrap transition-all duration-150s bg-white group/dropdown-list"
+flex-col items-end group-hover/dropdown:h-[13rem] right-0 overflow-hidden flex whitespace-nowrap transition-all duration-150s bg-white group/dropdown-list z-20"
 >
   {
     list.map((item) => (
