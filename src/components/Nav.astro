@@ -9,11 +9,11 @@ const ReferentesList = LEAD_ARCHITECTS.map(({ short_name }) => short_name);
 <nav role="navigation" class="w-fit absolute right-0 md:block hidden">
   <ul class="flex gap-6 flex-shrink-0 w-fit group/nav">
     <NavItem underline href="/">inicio</NavItem>
-    <NavItem underline href="/">el proyecto</NavItem>
+    <NavItem underline href="/proyecto">el proyecto</NavItem>
     <NavItem>
       referentes <Dropdown slot="dropdown" list={ReferentesList} />
     </NavItem>
-    <NavItem underline href="/">vitalicias</NavItem>
-    <NavItem underline href="/">equipo</NavItem>
+    <NavItem underline href="/arquitectas-vitalicias">vitalicias</NavItem>
+    <NavItem underline href="/equipo">equipo</NavItem>
   </ul>
 </nav>
