@@ -10,14 +10,14 @@ const { list } = Astro.props;
   role="list"
   slot="dropdown"
   class="absolute rounded-md h-0
-flex-col items-end group-hover/dropdown:h-[13rem] right-0 overflow-hidden flex whitespace-nowrap transition-all duration-150s bg-white"
+flex-col items-end group-hover/dropdown:h-[13rem] right-0 overflow-hidden flex whitespace-nowrap transition-all duration-150s bg-white group/dropdown-list"
 >
   {
     list.map((item) => (
-      <li class="w-fit h-full text-dark-grey font-source-code group/dd-item p-1">
+      <li class="w-fit h-full text-dark-grey font-source-code group/dropdown-item p-1 group-hover/dropdown-list:opacity-50 hover:!opacity-100">
         <a href={item.replaceAll(" ", "-").toLowerCase()}>
           {item}{" "}
-          <div class="bg-light-grey h-[1px] w-0 group-hover/dd-item:w-full transition-[width] duration-150" />
+          <div class="bg-light-grey h-[1px] w-0 group-hover/dropdown-item:w-full transition-[width] duration-150" />
         </a>
       </li>
     ))
