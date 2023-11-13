@@ -5,7 +5,9 @@ import Nav from "./Nav.astro";
 const { logo = true } = Astro.props;
 ---
 
-<header class="w-full grid grid-cols-2 place-content-between relative">
+<header class="w-full flex items-center top-0 bg-white h-20 sticky z-50">
   {logo && <Logo />}
   <Nav />
 </header>
+
+<script></script>
