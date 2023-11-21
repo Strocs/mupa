@@ -3,7 +3,7 @@ import { LEAD_ARCHITECTS } from "@data/lead-architects";
 import CardItem from "./CardItem.astro";
 ---
 
-<ul class="flex flex-wrap gap-4 group">
+<ul class="flex gap-4 group overflow-y-scroll scrollbar-hide scroll-smooth">
   {
     LEAD_ARCHITECTS.map((architect) => (
       <CardItem
