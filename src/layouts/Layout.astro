@@ -29,10 +29,10 @@ const { title } = Astro.props;
     />
     <ViewTransitions fallback="none" />
   </head>
-  <body class="w-full h-full min-h-[100dvh] p-8 overflow-y-auto">
+  <body class="w-full flex flex-col min-h-[100dvh] p-4 sm:p-8 scroll-smooth">
     <div
       aria-hidden="true"
-      class="w-full h-full bg-white max-w-screen-2xl rounded-2xl grid grid-rows-[5rem_auto_1fr] m-auto px-8 sm:px-12 overflow-y-scroll overflow-x-hidden scroll-smooth relative"
+      class="w-full grow bg-white max-w-screen-2xl rounded-2xl m-auto px-6 sm:px-12 overflow-x-hidden"
     >
       <slot />
     </div>
@@ -74,14 +74,14 @@ const { title } = Astro.props;
         src: url("fonts/HelveticaNeueCyr-Bold.woff2") format("woff2");
       }
 
-      /* .scrollbar-hide {
+      .scrollbar-hide {
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
 
       .scrollbar-hide::-webkit-scrollbar {
         display: none;
-      } */
+      }
 
       ::-webkit-scrollbar {
         width: 0.5rem;

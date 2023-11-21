@@ -9,13 +9,13 @@ import CardsList from "@components/CardsList.astro";
 
 <Layout title="Mujeres, patrimonio y arquitectura local">
   <Header logo={false} />
-  <main class="w-full flex flex-col items-center px-14">
+  <main class="w-full flex flex-col items-center sm:px-14">
     <LogoWrapper>
       <Logo large />
     </LogoWrapper>
-    <section class="-mt-16">
+    <section class="sm:-mt-16 w-full">
       <h1
-        class="text-3xl text-light-grey font-light leading-none flex flex-col"
+        class="text-3xl text-light-grey font-light leading-none text-end sm:text-right mb-2 sm:mb-auto"
       >
         <strong class="text-5xl font-black text-dark-grey">arquitectas</strong>
          referentes
@@ -27,13 +27,12 @@ import CardsList from "@components/CardsList.astro";
 </Layout>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
+  function addMouseEvents() {
     const shapes = document.querySelectorAll(".shapes");
     const items = document.querySelectorAll(".architect_items");
-
-    items.forEach((item, index) => {
+    items.forEach((item) => {
       item.addEventListener("mouseover", () => {
-        shapes.forEach((shape, i) => {
+        shapes.forEach((shape) => {
           if (!item.id.includes(shape.id)) {
             shape.classList.add("unfocused");
           }
@@ -46,5 +45,9 @@ import CardsList from "@components/CardsList.astro";
         });
       });
     });
-  });
+  }
+  // Works with browsers that support View Transition API. ex. Chrome, Edge.
+  document.addEventListener("astro:page-load", addMouseEvents);
+  // For Firefox and Safari that no support View Transitions
+  addMouseEvents();
 </script>
