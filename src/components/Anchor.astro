@@ -1,0 +1,20 @@
+---
+interface Props {
+  href: string;
+  title?: string;
+}
+
+const { href, title }: Props = Astro.props;
+---
+
+<li
+  class="w-fit text-dark-grey font-source-code group/link group-hover/nav:opacity-60 hover:!opacity-100 transition-opacity duration-150 cursor-pointer relative"
+>
+  <a {...Astro.props} href={href}>
+    {title}
+  </a>
+  <div
+    class="bg-light-grey h-px w-0 group-hover/link:w-full transition-[width] duration-150"
+  >
+  </div>
+</li>

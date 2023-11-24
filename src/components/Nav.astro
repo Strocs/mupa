@@ -1,19 +1,26 @@
 ---
-import { LEAD_ARCHITECTS } from "@data/lead-architects";
 import Dropdown from "./Dropdown.astro";
-import NavItem from "./NavItem.astro";
-
-const ReferentesList = LEAD_ARCHITECTS.map(({ short_name }) => short_name);
+import Anchor from "./Anchor.astro";
+import MenuButton from "./MenuButton.astro";
+import { NAV_ITEMS } from "@data/nav";
 ---
 
-<nav role="navigation" class="w-fit absolute right-0 md:block hidden">
-  <ul class="flex gap-6 flex-shrink-0 w-fit group/nav">
-    <NavItem underline href="/">inicio</NavItem>
-    <NavItem underline href="/proyecto">el proyecto</NavItem>
-    <NavItem>
-      referentes <Dropdown slot="dropdown" list={ReferentesList} />
-    </NavItem>
-    <NavItem underline href="/arquitectas-vitalicias">vitalicias</NavItem>
-    <NavItem underline href="/equipo">equipo</NavItem>
+<nav
+  role="navigation"
+  class="w-full h-full flex items-center justify-end text-dark-grey"
+>
+  <MenuButton />
+  <ul
+    class="gap-6 flex-shrink-0 w-full group/nav xl:flex hidden peer-checked:flex peer-checked:absolute peer-checked:bg-white peer-checked:z-40 peer-checked:inset-0 peer-checked:flex-col peer-checked:items-center peer-checked:pt-20 peer-checked:text-xl"
+  >
+    {
+      NAV_ITEMS.map((item) => {
+        if (typeof item.url !== "string") {
+          return <Dropdown title={item.title} list={item.url} />;
+        }
+
+        return <Anchor title={item.title} href={item.url} />;
+      })
+    }
   </ul>
 </nav>
