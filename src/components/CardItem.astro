@@ -1,28 +1,16 @@
 ---
 import { nameToPath } from "@utils/nameToPath.ts";
+import { Image } from "astro:assets";
 
 interface Props {
-  img: string;
+  img: ImageMetadata;
   name: string;
   color: string;
   id: string;
 }
 
-interface Colors {
-  [color: string]: { bg: string };
-}
-
 const { img, name, color, id } = Astro.props;
 const href = nameToPath({ name });
-
-const colors: Colors = {
-  yellow: { bg: "bg-yellow" },
-  red: { bg: "bg-red" },
-  blue: { bg: "bg-blue" },
-  fuchsia: { bg: "bg-fuchsia" },
-  ocher: { bg: "bg-ocher" },
-  purple: { bg: "bg-purple" },
-};
 ---
 
 <li
@@ -36,10 +24,11 @@ const colors: Colors = {
     >
       {name}
     </h2>
-    <img
+    <Image
       src={img}
-      alt=`Imágen de la Arquitecta ${name}`
       class="h-full w-full object-cover aspect-[9/14]"
+      alt=`Imágen de la Arquitecta ${name}`
+      width={500}
     />
   </a>
 </li>
