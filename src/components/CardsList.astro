@@ -3,7 +3,10 @@ import { LEAD_ARCHITECTS } from "@data/lead-architects";
 import CardItem from "./CardItem.astro";
 ---
 
-<ul class="flex gap-4 group overflow-y-scroll scrollbar-hide scroll-smooth">
+<ul
+  id="cards-list"
+  class="flex gap-4 group overflow-x-scroll py-2 scrollbar-hide scroll-smooth"
+>
   {
     LEAD_ARCHITECTS.map((architect) => (
       <CardItem
@@ -15,3 +18,82 @@ import CardItem from "./CardItem.astro";
     ))
   }
 </ul>
+<div
+  id="card-controls"
+  class="flex justify-between px-2 lg:hidden text-pink"
+  style="display: none;"
+>
+  <button
+    class="ring-1 ring-pink flex-shrink-0 w-6 h-6 rounded-full hover:text-white hover:bg-pink duration-150"
+    type="button"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="mx-auto h-5"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="currentColor"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+        d="M15 6l-6 6l6 6"></path></svg
+    >
+    <p class="sr-only">Previous</p>
+  </button>
+  <button
+    class="ring-1 ring-pink flex-shrink-0 w-6 h-6 rounded-full hover:text-white hover:bg-pink duration-150"
+    type="button"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="mx-auto h-5"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="currentColor"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+        d="M9 6l6 6l-6 6"></path></svg
+    >
+    <p class="sr-only">Next</p></button
+  >
+</div>
+
+<script>
+  function hasTouchSupport() {
+    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  }
+
+  function loadControls() {
+    const controlsWrapper = document.getElementById("card-controls");
+    const cardsWrapper = document.getElementById("cards-list");
+    if (!hasTouchSupport() && controlsWrapper) {
+      controlsWrapper.removeAttribute("style");
+      const prev = controlsWrapper?.firstElementChild;
+      const next = controlsWrapper?.lastElementChild;
+
+      function backward() {
+        cardsWrapper?.scrollBy({
+          left: -cardsWrapper.scrollWidth,
+          behavior: "smooth",
+        });
+      }
+      function forward() {
+        cardsWrapper?.scrollBy({
+          left: cardsWrapper.scrollWidth,
+          behavior: "smooth",
+        });
+      }
+
+      prev?.addEventListener("click", backward);
+      next?.addEventListener("click", forward);
+    }
+  }
+  document.addEventListener("astro:after-swap", loadControls);
+  loadControls();
+</script>
