@@ -5,6 +5,9 @@ import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Paragraph from "@components/Paragraph.astro";
 import Footer from "@components/Footer.astro";
+import { Vimeo } from "astro-embed";
+import { Image } from "astro:assets";
+import { getPhotos } from "@utils/getPhotos";
 
 export function getStaticPaths() {
   return LEAD_ARCHITECTS.map((architect) => {
@@ -18,16 +21,18 @@ export function getStaticPaths() {
 const {
   id,
   name,
+  short_name,
   birth_date,
   birth_place,
   university,
   description,
   quote,
   color,
-  main_img,
-  images,
-  videoURL,
+  assets,
+  videoId,
 } = Astro.props;
+
+const gallery = await getPhotos(assets);
 ---
 
 <Layout title={name}>
@@ -64,16 +69,25 @@ const {
         </q>
         <h3 class="text-2xl font-bold">Documentación</h3>
         <ul class="flex gap-4 flex-wrap">
-          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
-          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
-          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
-          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
-          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
-          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
-          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
-          <li class="w-32 h-32 bg-light-grey opacity-25 rounded-md"></li>
+          {
+            gallery.map((photo) => (
+              <li class="w-32 h-32 bg-light-grey rounded-md overflow-hidden">
+                <Image
+                  src={photo}
+                  alt="Imágenes de ..."
+                  class="object-cover"
+                  width={1080}
+                />
+              </li>
+            ))
+          }
         </ul>
       </article>
+      <section
+        class="aspect-video overflow-hidden object-cover rounded-xl w-full max-w-4xl h-fit bg-light-grey flex-shrink-0 sticky right-0 top-20"
+      >
+        <Vimeo id={videoId} params={`color=${color.slice(1)}`} />
+      </section>
     </section>
   </main>
   <Footer />
