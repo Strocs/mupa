@@ -9,12 +9,12 @@ const descriptionSplited = description.split("\n");
       const textBoldSplitted = description.split("\b");
 
       return (
-        <p>
+        <p class="text-base">
           {textBoldSplitted.map((text, index) => {
             if (index % 2 === 0) {
               return text;
             }
-            return <b>{text}</b>;
+            return <strong>{text}</strong>;
           })}
         </p>
       );
