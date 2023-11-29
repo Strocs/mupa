@@ -3,9 +3,10 @@ import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
+  overflow?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, overflow = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -27,12 +28,13 @@ const { title } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+
     <ViewTransitions fallback="none" />
   </head>
   <body class="w-full flex flex-col min-h-[100dvh] p-4 sm:p-8 scroll-smooth">
     <div
       aria-hidden="true"
-      class="w-full grow bg-white max-w-screen-2xl rounded-2xl m-auto overflow-x-hidden relative flex flex-col justify-between"
+      class=`w-full grow bg-white max-w-screen-2xl rounded-2xl m-auto relative flex flex-col justify-between ${overflow ? 'overflow-x-hidden' : ''}`
     >
       <slot />
     </div>
@@ -40,7 +42,13 @@ const { title } = Astro.props;
       html {
         background: url("/background.png") no-repeat fixed top;
         background-size: cover;
-        font-family: "Helvetica", "Arial Narrow", Arial, sans-serif;
+        /* font-family: "Helvetica", Helvetica, "Arial Narrow", Arial, sans-serif; */
+        font-family:
+          "Helvetica",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
         height: 100%;
         width: 100%;
       }
@@ -72,6 +80,13 @@ const { title } = Astro.props;
         font-weight: 700;
         font-display: swap;
         src: url("fonts/HelveticaNeueCyr-Bold.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Helvetica";
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url("fonts/HelveticaNeueCyr-heavy.woff2") format("woff2");
       }
 
       .scrollbar-hide {
