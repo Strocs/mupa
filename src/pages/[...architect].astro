@@ -1,13 +1,15 @@
 ---
 import { nameToPath } from "@utils/nameToPath";
+import { getPhotos } from "@utils/getPhotos";
 import { LEAD_ARCHITECTS } from "@data/lead-architects";
 import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Paragraph from "@components/Paragraph.astro";
 import Footer from "@components/Footer.astro";
+
 import { Vimeo } from "astro-embed";
 import { Image } from "astro:assets";
-import { getPhotos } from "@utils/getPhotos";
+import H2 from "@components/H2.astro";
 
 export function getStaticPaths() {
   return LEAD_ARCHITECTS.map((architect) => {
@@ -37,58 +39,129 @@ const gallery = await getPhotos(assets);
 
 <Layout title={name}>
   <Header />
-  <main class="flex flex-col items-start h-full w-full gap-10 my-10">
+  <main class="flex flex-col items-start h-full w-full gap-10 mb-10 px-6">
     <h1
       class="text-[3.5rem] max-w-xl leading-none font-black text-dark-grey font-source-code"
       transition:name=`name-${id}`
     >
-      {name}
+      Arq. {short_name}
     </h1>
-    <section
-      class="w-full flex gap-4 justify-between relative font-light text-primary"
+    <div
+      class="w-full flex flex-col gap-4 justify-between font-light text-primary"
     >
-      <article class="max-w-lg h-full flex flex-col gap-4">
-        <ul>
-          <li>
-            <h3><strong>Fecha de nacimiento:</strong> {" "}{birth_date}</h3>
-          </li>
-          <li>
-            <h3><strong>Lugar de nacimiento:</strong> {" "}{birth_place}</h3>
-          </li>
-          <li>
-            <h3>
-              <strong>Estudios de Arquitectura:</strong>
-              {" "}{university}
-            </h3>
-          </li>
-        </ul>
-        <h3 class="text-2xl font-bold">Trayectoria</h3>
-        <Paragraph description={description} />
-        <q class="italic leading-tight font-source-code font-normal text-sm">
-          {quote}
-        </q>
-        <h3 class="text-2xl font-bold">Documentación</h3>
-        <ul class="flex gap-4 flex-wrap">
-          {
-            gallery.map((photo) => (
-              <li class="w-32 h-32 bg-light-grey rounded-md overflow-hidden">
-                <Image
-                  src={photo}
-                  alt="Imágenes de ..."
-                  class="object-cover"
-                  width={1080}
-                />
-              </li>
-            ))
-          }
-        </ul>
-      </article>
-      <section
-        class="aspect-video overflow-hidden object-cover rounded-xl w-full max-w-4xl h-fit bg-light-grey flex-shrink-0 sticky right-0 top-20"
+      <aside
+        id="video-wrapper"
+        class="aspect-video overflow-hidden object-cover rounded-xl w-full max-w-4xl h-fit flex-shrink-0 sticky top-4 z-10 mb-4"
       >
         <Vimeo id={videoId} params={`color=${color.slice(1)}`} />
-      </section>
-    </section>
+      </aside>
+      <article class="max-w-lg h-full flex flex-col gap-10 text-dark-grey">
+        <section>
+          <H2>Ficha</H2>
+          <ul>
+            <li>
+              <h3><strong>Nombre:</strong> {" "}{name}</h3>
+            </li>
+            <li>
+              <h3><strong>Fecha de nacimiento:</strong> {" "}{birth_date}</h3>
+            </li>
+            <li>
+              <h3><strong>Lugar de nacimiento:</strong> {" "}{birth_place}</h3>
+            </li>
+            <li>
+              <h3>
+                <strong>Estudios de Arquitectura:</strong>
+                {" "}{university}
+              </h3>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <H2>Trayectoria</H2>
+          <Paragraph description={description} />
+          <blockquote
+            class="leading-tight font-source-code font-normal text-sm mt-6"
+          >
+            <q class="italic">{quote}</q>
+            <footer class="text-end">-Arq. {short_name}</footer>
+          </blockquote>
+        </section>
+        <section>
+          <H2>Material Gráfico</H2>
+          <figure class="flex gap-4 flex-wrap items-center justify-center">
+            {
+              gallery.map((photo) => (
+                <a
+                  id="image-wrapper"
+                  href=""
+                  class="w-32 h-32 bg-light-grey rounded-md overflow-hidden"
+                >
+                  <Image
+                    src={photo}
+                    alt="Imágen del trabajo ..."
+                    class="object-cover h-full"
+                    height={900}
+                  />
+                </a>
+              ))
+            }
+          </figure>
+        </section>
+      </article>
+    </div>
   </main>
   <Footer />
 </Layout>
+
+<style define:vars={{ color }}>
+  aside {
+    box-shadow: 0 0 50px -20px var(--color);
+    animation: shadow 10s linear infinite alternate-reverse;
+  }
+
+  @keyframes shadow {
+    0% {
+      box-shadow: 0 0 50px -20px var(--color);
+    }
+    25% {
+      box-shadow: 5px 5px 50px -8px var(--color);
+    }
+    50% {
+      box-shadow: 0 0 50px -20px var(--color);
+    }
+    75% {
+      box-shadow: -5px 5px 50px -8px var(--color);
+    }
+    100% {
+      box-shadow: -5px -5px 50px -16px var(--color);
+    }
+  }
+</style>
+
+<script>
+  function loadGalleryHandler() {
+    const images = document.querySelectorAll("#image-wrapper");
+
+    function showGallery(e: Event) {
+      e.preventDefault();
+      console.log("fire");
+    }
+
+    images.forEach((image) => {
+      image.addEventListener("click", showGallery);
+    });
+  }
+
+  document.addEventListener("astro:page-load", loadGalleryHandler);
+  // const video = document.getElementById("video-wrapper");
+
+  // window.addEventListener("scroll", () => {
+  //   const videoTopOffset = video?.getBoundingClientRect().top;
+  //   console.log(videoTopOffset);
+  //   if (videoTopOffset && videoTopOffset <= 20) {
+  //     video.style.position = "fixed";
+  //   } else {
+  //     video.style.position = "";
+  //   }
+  // });
+</script>
