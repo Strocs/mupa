@@ -5,7 +5,7 @@ import Nav from "./Nav.astro";
 const { logo = true } = Astro.props;
 ---
 
-<header class="w-full h-14 sm:h-20 px-6 sm:px-12">
+<header class="w-full h-20 sm:h-20 px-6 sm:px-12 flex items-center">
   {logo && <Logo />}
   <Nav />
 </header>
