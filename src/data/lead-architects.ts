@@ -12,24 +12,7 @@ const libertadGallery = import.meta.glob("../assets/libertad-morales/gallery/**"
 const mariaGallery = import.meta.glob("../assets/maria-teresa-fierro/gallery/**")
 const pazGallery = import.meta.glob("../assets/paz-walker/gallery/**")
 
-interface Architect {
-  id: `${string}-${string}-${string}-${string}-${string}`
-  name: string
-  short_name: string
-  birth_date: string
-  birth_place: string
-  university: string
-  description: string
-  quote: string
-  color: string
-  main_img: ImageMetadata
-  assets: Record<string, () => Promise<unknown>>,
-  videoId: string
-}
-
-type Architects = Array<Architect>
-
-export const LEAD_ARCHITECTS: Architects = [
+export const LEAD_ARCHITECTS = [
   {
     id: crypto.randomUUID(),
     name: 'Juana Noemi Varela Kawasaki',
