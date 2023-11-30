@@ -40,7 +40,7 @@ const { title, overflow = false } = Astro.props;
     </div>
     <style is:global>
       html {
-        background: url("/background.png") no-repeat fixed top;
+        background: url("/background.png") no-repeat fixed center;
         background-size: cover;
         /* font-family: "Helvetica", Helvetica, "Arial Narrow", Arial, sans-serif; */
         font-family:
@@ -58,28 +58,21 @@ const { title, overflow = false } = Astro.props;
         font-style: normal;
         font-weight: 400;
         font-display: swap;
-        src: url("fonts/HelveticaNeueCyr-Medium.woff2") format("woff2");
+        src: url("/fonts/HelveticaNeueCyr-Roman.woff2") format("woff2");
       }
       @font-face {
         font-family: "Helvetica";
         font-style: normal;
-        font-weight: 300;
+        font-weight: 500;
         font-display: swap;
-        src: url("fonts/HelveticaNeueCyr-Light.woff2") format("woff2");
-      }
-      @font-face {
-        font-family: "Helvetica";
-        font-style: normal;
-        font-weight: 200;
-        font-display: swap;
-        src: url("fonts/HelveticaNeueCyr-Thin.woff2") format("woff2");
+        src: url("/fonts/HelveticaNeueCyr-Medium.woff2") format("woff2");
       }
       @font-face {
         font-family: "Helvetica";
         font-style: normal;
         font-weight: 700;
         font-display: swap;
-        src: url("fonts/HelveticaNeueCyr-Bold.woff2") format("woff2");
+        src: url("/fonts/HelveticaNeueCyr-Bold.woff2") format("woff2");
       }
       @font-face {
         font-family: "Helvetica";
