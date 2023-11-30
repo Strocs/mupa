@@ -9,12 +9,21 @@ const descriptionSplited = description.split("\n");
       const textBoldSplitted = description.split("\f");
 
       return (
-        <p class="text-base">
+        <p>
           {textBoldSplitted.map((text, index) => {
             if (index % 2 === 0) {
               return text;
             }
-            return <a href={"#" + text}>{text}</a>;
+            return (
+              <a
+                class="text-red -ml-[.3ch]"
+                id={`${text}_ref`}
+                href={"#" + text}
+                aria-labelledby="notes_heading"
+              >
+                <sup>{text}</sup>
+              </a>
+            );
           })}
         </p>
       );
