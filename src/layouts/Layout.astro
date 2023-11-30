@@ -31,7 +31,9 @@ const { title, overflow = false } = Astro.props;
 
     <ViewTransitions fallback="none" />
   </head>
-  <body class="w-full flex flex-col min-h-[100dvh] p-4 sm:p-8 scroll-smooth">
+  <body
+    class="w-full flex flex-col min-h-[100dvh] p-4 sm:p-8 scroll-smooth font-helvetica"
+  >
     <div
       aria-hidden="true"
       class=`w-full grow bg-white max-w-screen-2xl rounded-2xl m-auto relative flex flex-col justify-between ${overflow ? 'overflow-x-hidden' : ''}`
@@ -42,13 +44,6 @@ const { title, overflow = false } = Astro.props;
       html {
         background: url("/background.png") no-repeat fixed center;
         background-size: cover;
-        /* font-family: "Helvetica", Helvetica, "Arial Narrow", Arial, sans-serif; */
-        font-family:
-          "Helvetica",
-          system-ui,
-          -apple-system,
-          BlinkMacSystemFont,
-          sans-serif;
         height: 100%;
         width: 100%;
       }
@@ -56,30 +51,23 @@ const { title, overflow = false } = Astro.props;
       @font-face {
         font-family: "Helvetica";
         font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url("/fonts/Helvetica LT Std Light.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Helvetica";
+        font-style: normal;
         font-weight: 400;
         font-display: swap;
-        src: url("/fonts/HelveticaNeueCyr-Roman.woff2") format("woff2");
+        src: url("/fonts/Helvetica LT Std Roman.woff2") format("woff2");
       }
       @font-face {
         font-family: "Helvetica";
         font-style: normal;
         font-weight: 500;
         font-display: swap;
-        src: url("/fonts/HelveticaNeueCyr-Medium.woff2") format("woff2");
-      }
-      @font-face {
-        font-family: "Helvetica";
-        font-style: normal;
-        font-weight: 700;
-        font-display: swap;
-        src: url("/fonts/HelveticaNeueCyr-Bold.woff2") format("woff2");
-      }
-      @font-face {
-        font-family: "Helvetica";
-        font-style: normal;
-        font-weight: 900;
-        font-display: swap;
-        src: url("fonts/HelveticaNeueCyr-heavy.woff2") format("woff2");
+        src: url("/fonts/Helvetica LT Std Bold.woff2") format("woff2");
       }
 
       .scrollbar-hide {

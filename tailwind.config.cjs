@@ -17,7 +17,7 @@ module.exports = {
       },
       fontFamily: {
         'source-code': ['Source Code Pro', 'monospace'],
-        helvetica: ['Helvetica', 'Helvetica Neue', 'sans-serif']
+        helvetica: ['Helvetica', 'system-ui', 'sans-serif']
       },
       animation: {
         background: 'background 5s linear infinite alternate',
