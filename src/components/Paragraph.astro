@@ -6,7 +6,7 @@ const descriptionSplited = description.split("\n");
 <div class="grid gap-4">
   {
     descriptionSplited.map((description: string) => {
-      const textBoldSplitted = description.split("\b");
+      const textBoldSplitted = description.split("\f");
 
       return (
         <p class="text-base">
@@ -14,7 +14,7 @@ const descriptionSplited = description.split("\n");
             if (index % 2 === 0) {
               return text;
             }
-            return <strong>{text}</strong>;
+            return <a href={"#" + text}>{text}</a>;
           })}
         </p>
       );

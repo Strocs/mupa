@@ -1,0 +1,82 @@
+---
+import type { GetStaticPaths } from "astro";
+import { LIFETIME_ARCHITECTS } from "@data/lifetime-architects";
+import { nameToPath } from "@utils/nameToPath";
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import H2 from "@components/H2.astro";
+import Paragraph from "@components/Paragraph.astro";
+import { Image } from "astro:assets";
+export const getStaticPaths = (() => {
+  return LIFETIME_ARCHITECTS.map((architect) => {
+    return {
+      params: { vitalicias: nameToPath({ name: architect.short_name }) },
+      props: architect,
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const {
+  id,
+  name,
+  short_name,
+  birth_date,
+  birth_place,
+  death_date,
+  university,
+  description,
+  footnotes,
+} = Astro.props;
+---
+
+<Layout title={name}>
+  <Header />
+  <main class="flex flex-col items-start h-full w-full gap-10 mb-10 px-6">
+    <h1
+      class="text-[3.5rem] max-w-xl leading-none font-black text-dark-grey font-source-code"
+      transition:name=`name-${id}`
+    >
+      Arq. {short_name}
+    </h1>
+    <article class="max-w-lg h-full flex flex-col gap-10 text-dark-grey">
+      <!-- <aside>
+        <Image src={} alt='' />
+      </aside> -->
+      <section>
+        <H2>Ficha</H2>
+        <ul>
+          <li>
+            <h3><strong>Nombre:</strong> {" "}{name}</h3>
+          </li>
+          <li>
+            <h3><strong>Fecha de nacimiento:</strong> {" "}{birth_date}</h3>
+          </li>
+          <li>
+            <h3><strong>Lugar de nacimiento:</strong> {" "}{birth_place}</h3>
+          </li>
+          {
+            death_date.length !== 0 && (
+              <li>
+                <h3>
+                  <strong>Fecha de defunción:</strong> {death_date}
+                </h3>
+              </li>
+            )
+          }
+          <li>
+            <h3>
+              <strong>Estudios de Arquitectura:</strong>
+              {" "}{university}
+            </h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <H2>Trayectoria</H2>
+        <Paragraph description={description} />
+      </section>
+    </article>
+  </main>
+  <Footer />
+</Layout>
