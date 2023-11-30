@@ -3,18 +3,23 @@ import { nameToPath } from "@utils/nameToPath";
 interface Props {
   list: Array<string>;
   title?: string;
+  hrefPrefix?: string;
 }
 
-const { list, title } = Astro.props;
+const { list, title, hrefPrefix } = Astro.props;
+
+const menuHeight = hrefPrefix?.includes("referentes")
+  ? "peer-checked:h-[11rem]"
+  : "peer-checked:h-[8.5rem]";
 ---
 
 <li
   class="w-fit text-dark-grey font-source-code group/link group-hover/nav:opacity-60 hover:!opacity-100 transition-opacity duration-150 relative"
 >
-  <input type="checkbox" id="dropdown-menu" hidden class="peer" />
+  <input type="checkbox" id=`${title}-dropdown-menu` hidden class="peer" />
   <label
-    for="dropdown-menu"
-    class="flex items-center gap-1 justify-center cursor-pointer"
+    for=`${title}-dropdown-menu`
+    class="flex items-center gap-1 justify-center cursor-pointer w-fit mx-auto relative after:content-['arquitectas'] after:absolute after:-top-3 after:text-sm after:left-0 after:text-light-grey"
   >
     {title}
     <svg
@@ -31,13 +36,13 @@ const { list, title } = Astro.props;
   </label>
   <ul
     role="list"
-    class="rounded-md h-0
-flex-col lg:items-end text-sm peer-checked:h-[11rem] bg-white overflow-hidden flex whitespace-nowrap transition-all duration-150s group/dropdown-list z-20"
+    class=`rounded-md h-0
+flex-col lg:items-end text-sm ${menuHeight} bg-white overflow-hidden flex whitespace-nowrap transition-all duration-150s group/dropdown-list z-20`
   >
     {
       list.map((item) => (
         <li class="w-fit text-dark-grey font-source-code group/dropdown-item p-1 group-hover/dropdown-list:opacity-50 hover:!opacity-100 ml-16">
-          <a href={nameToPath({ name: item })}>
+          <a href={`/${hrefPrefix}/${nameToPath({ name: item })}`}>
             {item}
             <div class="bg-light-grey h-px w-0 group-hover/dropdown-item:w-full transition-[width] duration-150" />
           </a>

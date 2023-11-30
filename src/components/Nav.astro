@@ -11,12 +11,18 @@ import { NAV_ITEMS } from "@data/nav";
 >
   <MenuButton />
   <ul
-    class="gap-6 flex-shrink-0 w-full group/nav xl:flex hidden peer-checked:flex peer-checked:fixed peer-checked:bg-white peer-checked:z-40 peer-checked:inset-0 peer-checked:flex-col peer-checked:items-center peer-checked:pt-20 peer-checked:text-xl"
+    class="gap-6 flex-shrink-0 w-full group/nav xl:flex hidden peer-checked:flex peer-checked:absolute peer-checked:bg-white peer-checked:z-40 peer-checked:inset-0 peer-checked:flex-col peer-checked:items-center peer-checked:pt-20 peer-checked:text-xl"
   >
     {
       NAV_ITEMS.map((item) => {
         if (typeof item.url !== "string") {
-          return <Dropdown title={item.title} list={item.url} />;
+          return (
+            <Dropdown
+              title={item.title}
+              list={item.url}
+              hrefPrefix={"arquitectas-" + item.title}
+            />
+          );
         }
 
         return <Anchor title={item.title} href={item.url} />;

@@ -1,6 +1,8 @@
 import { LEAD_ARCHITECTS } from './lead-architects'
+import { LIFETIME_ARCHITECTS } from './lifetime-architects'
 
 const referenceList = LEAD_ARCHITECTS.map(({ short_name }) => short_name)
+const lifetimeList = LIFETIME_ARCHITECTS.map(({ short_name }) => short_name)
 
 export const NAV_ITEMS = [
   {
@@ -17,7 +19,7 @@ export const NAV_ITEMS = [
   },
   {
     title: 'vitalicias',
-    url: '/arquitectas-vitalicias'
+    url: lifetimeList
   },
   {
     title: 'equipo',
