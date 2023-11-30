@@ -26,6 +26,7 @@ const {
   death_date,
   university,
   description,
+  image,
   footnotes,
 } = Astro.props;
 ---
@@ -33,40 +34,59 @@ const {
 <Layout title={name}>
   <Header />
   <main class="flex flex-col items-start h-full w-full gap-10 mb-10 px-6">
-    <h1
-      class="text-[3.5rem] max-w-xl leading-none font-black text-dark-grey font-source-code"
-      transition:name=`name-${id}`
-    >
-      Arq. {short_name}
-    </h1>
+    <div class="font-source-code mt-2">
+      <p class="text-light-grey">arquitecta vitalicia</p>
+      <h1
+        class="text-[3.5rem] max-w-xl leading-none font-black text-dark-grey"
+        transition:name=`name-${id}`
+      >
+        {short_name}
+      </h1>
+    </div>
     <article class="max-w-lg h-full flex flex-col gap-10 text-dark-grey">
-      <!-- <aside>
-        <Image src={} alt='' />
-      </aside> -->
+      <aside>
+        {
+          image && (
+            <Image
+              src={image}
+              alt={`Imágen de la arquitecta ${name}`}
+              class="rounded-xl"
+              width={1080}
+              height={900}
+            />
+          )
+        }
+      </aside>
       <section>
-        <H2>Ficha</H2>
         <ul>
           <li>
-            <h3><strong>Nombre:</strong> {" "}{name}</h3>
+            <h3><strong class="font-medium">Nombre:</strong> {" "}{name}</h3>
           </li>
           <li>
-            <h3><strong>Fecha de nacimiento:</strong> {" "}{birth_date}</h3>
+            <h3>
+              <strong class="font-medium">Fecha de nacimiento:</strong>
+              {" "}{birth_date}
+            </h3>
           </li>
           <li>
-            <h3><strong>Lugar de nacimiento:</strong> {" "}{birth_place}</h3>
+            <h3>
+              <strong class="font-medium">Lugar de nacimiento:</strong>
+              {" "}{birth_place}
+            </h3>
           </li>
           {
-            death_date.length !== 0 && (
+            death_date && (
               <li>
                 <h3>
-                  <strong>Fecha de defunción:</strong> {death_date}
+                  <strong class="font-medium">Fecha de defunción:</strong>{" "}
+                  {death_date}
                 </h3>
               </li>
             )
           }
           <li>
             <h3>
-              <strong>Estudios de Arquitectura:</strong>
+              <strong class="font-medium">Estudios de Arquitectura:</strong>
               {" "}{university}
             </h3>
           </li>
@@ -76,6 +96,47 @@ const {
         <H2>Trayectoria</H2>
         <Paragraph description={description} />
       </section>
+      {
+        footnotes && (
+          <footer>
+            <h2 id="notes_heading" class="sr-only">
+              Pie de página
+            </h2>
+            <div class="w-full h-px bg-light-grey mb-2" />
+            <ol>
+              {footnotes.map(({ id, title, text }) => (
+                <li id={id} class="grid grid-flow-col gap-2 text-sm mb-2">
+                  <a
+                    href={`#${id}_ref`}
+                    aria-label="Volver al conteindo"
+                    class="text-red font-bold"
+                  >
+                    {id}
+                  </a>
+                  <p>
+                    {title && <b>{title}</b>}
+                    {text.split("\f").map((textOrLink, index) => {
+                      if (index % 2 === 0) {
+                        return textOrLink;
+                      }
+
+                      return (
+                        <a
+                          href={textOrLink}
+                          target="_blank"
+                          class="text-sky-700 break-all w-fit hover:underline"
+                        >
+                          {textOrLink}
+                        </a>
+                      );
+                    })}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </footer>
+        )
+      }
     </article>
   </main>
   <Footer />
