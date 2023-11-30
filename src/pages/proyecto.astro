@@ -1,0 +1,87 @@
+---
+import Footer from "@components/Footer.astro";
+import H2 from "@components/H2.astro";
+import Header from "@components/Header.astro";
+import { MUPA_IN_MEDIA } from "@data/mupa-in-media";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="El Pr oyecto">
+  <Header />
+  <main class="px-6 grid gap-4">
+    <h1
+      class="text-[3.5rem] max-w-xl leading-none font-source-code font-black text-dark-grey"
+    >
+      El Proyecto
+    </h1>
+    <article class="text-dark-grey grid gap-8">
+      <section class="grid gap-4">
+        <H2>Mujeres, Arquitectura y Patrimonio Local</H2>
+        <p>
+          <b>MUPA</b> “Mujeres, Arquitectura y Patrimonio Local <i
+            >presencia femenina en las ciudades de La Serena y Coquimbo</i
+          >”, es un proyecto financiado por el Fondo Nacional de Desarrollo
+          Cultural y las Artes, Convocatoria 2023. Tiene como objetivo principal
+          visibilizar parte del legado femenino en la producción arquitectónica
+          llevada a cabo en las ciudades de La Serena y Coquimbo. Para ello se
+          ha reconocido a las primeras arquitectas colegiadas llegadas a la zona
+          a partir de los años ochenta. Pioneras, venidas en su mayoría desde
+          Santiago, en donde realizaron sus estudios de arquitectura, llegaron a
+          contribuir e intervenir tanto en el ámbito público como privado,
+          crearon docencia en arquitectura y participaron activamente en la
+          formación de la Delegación Zonal Región de Coquimbo del Colegio de
+          Arquitectos.
+        </p>
+        <p>
+          Hemos seleccionado a 6 arquitectas pioneras en la zona y primeras
+          colegiadas, que han accedido a colaborar en nuestro proyecto. Las
+          arquitectas: <i
+            >Juanita Varela Kawasaki, Viviana Hernández Perez, Alicia Silva
+            Riveros, Maria Teresa Fierro Page, Paz Walker Fernández y Libertad
+            Morales Vázquez</i
+          >, las reconocemos como patrimonio vivo y honramos sus trayectorias
+          poniéndolas como referentes en nuestra historia urbana local, mediante
+          entrevistas en formato cápsulas audiovisuales. Cada una de ellas ha
+          aportado desde sus diversos caminos y experticia en la arquitectura y
+          urbanismo local. También levantamos mediante fichas biográficas a las
+          arquitectas: <i
+            >Juana Boudain Madrid, Maria Isabel Navarro, María Iris Marcich,
+            María Teresa Morales y Mirtha Cecilia Ponce</i
+          >, reconociendo sus trayectorias y aportes en nuestras ciudades de La
+          Serena y Coquimbo.
+        </p>
+        <p>
+          MUPA busca instalarse como referente a nivel regional en la
+          visibilización de mujeres arquitectas, aportar en el reconocimiento de
+          las mismas y colaborar con las escuelas de arquitectura regionales, a
+          fin de incrementar el conocimiento sobre referentes locales en
+          arquitectura y urbanismo. Cuenta con el apoyo de la Escuela de
+          Arquitectura de la Universidad Central región de Coquimbo, el
+          Departamento y Escuela de Arquitectura de la Universidad de La Serena,
+          el apoyo del Ministerio de la Mujer y Equidad de Género y la
+          Delegación Zonal Región de Coquimbo del Colegio de Arquitectos.
+        </p>
+      </section>
+      <section>
+        <H2>MUPA en los medios</H2>
+
+        <ul class="grid gap-4">
+          {
+            MUPA_IN_MEDIA.map(({ media, text, href }) => (
+              <li class="flex gap-2">
+                <span class="text-red">•</span>
+                <a class=" hover:underline grid" href={href}>
+                  <strong>{media}</strong>
+                  <p class={`text-sky-700 text-sm ${text ? "" : "break-all"}`}>
+                    {text ? text : href}
+                  </p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </article>
+  </main>
+  <Footer />
+</Layout>
