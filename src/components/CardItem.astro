@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { img, name, color, id } = Astro.props;
-const href = nameToPath({ name });
+const href = "/arquitectas-referentes/" + nameToPath({ name });
 ---
 
 <li
