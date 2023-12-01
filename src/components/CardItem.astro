@@ -9,12 +9,12 @@ interface Props {
   id: string;
 }
 
-const { img, name, color, id } = Astro.props;
+const { img, name, id } = Astro.props;
 const href = "/arquitectas-referentes/" + nameToPath({ name });
 ---
 
 <li
-  id={"card-" + color}
+  id={id}
   class="architect_items relative w-full max-w-[7rem] sm:max-w-[8rem] shrink-0 h-full rounded-xl overflow-hidden shadow-md group-hover:grayscale hover:!grayscale-0 transition-all duration-150"
 >
   <a href={href} class="h-full w-full">
