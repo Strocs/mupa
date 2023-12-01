@@ -2,10 +2,35 @@
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
 import Layout from "@layouts/Layout.astro";
+import { COLLABORATES, TEAM } from "@data/team";
+import H2 from "@components/H2.astro";
+import Image from "astro/components/Image.astro";
 ---
 
 <Layout title="El Equipo">
   <Header />
-  <main></main>
+  <main class="px-6 grid gap-4">
+    <h1
+      class="text-[3.5rem] max-w-xl leading-none font-source-code font-black text-dark-grey"
+    >
+      El Equipo
+    </h1>
+    <article>
+      {
+        TEAM.map((p) => (
+          <section class="relative text-dark-grey">
+            <Image
+              src={p.image}
+              alt="imagen de olivia"
+              class="object-contain"
+            />
+            <H2>{p.name}</H2>
+            <p class="font-light -mt-4">{p.role}</p>
+            <p class="py-2 text-sm">{p.description}</p>
+          </section>
+        ))
+      }
+    </article>
+  </main>
   <Footer />
 </Layout>
