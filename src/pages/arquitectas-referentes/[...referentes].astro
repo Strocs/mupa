@@ -98,18 +98,18 @@ const gallery = await getPhotos(assets);
         </section>
         <section>
           <H2>Material Gráfico</H2>
-          <figure class="flex gap-4 flex-wrap items-center justify-center">
+          <figure class="columns-[3_125px] gap-x-2">
             {
               gallery.map((photo) => (
                 <a
                   id="image-wrapper"
                   href=""
-                  class="w-32 h-32 bg-light-grey rounded-md overflow-hidden"
+                  class="mb-2 overflow-hidden block rounded-lg hover:scale-105 duration-150"
                 >
                   <Image
                     src={photo}
                     alt="Imágen del trabajo ..."
-                    class="object-cover h-full"
+                    class=" max-w-full"
                     height={900}
                   />
                 </a>
@@ -128,25 +128,16 @@ const gallery = await getPhotos(assets);
 
 <style define:vars={{ color }}>
   aside {
-    box-shadow: 0 0 50px -20px var(--color);
-    animation: shadow 10s linear infinite alternate-reverse;
+    box-shadow: 0 -10px 80px 0 var(--color);
+    animation: shadow 3s linear infinite alternate-reverse;
   }
 
   @keyframes shadow {
-    0% {
-      box-shadow: 0 0 50px -20px var(--color);
+    from {
+      box-shadow: 0 -10px 80px 0 var(--color);
     }
-    25% {
-      box-shadow: 5px 5px 50px -8px var(--color);
-    }
-    50% {
-      box-shadow: 0 0 50px -20px var(--color);
-    }
-    75% {
-      box-shadow: -5px 5px 50px -8px var(--color);
-    }
-    100% {
-      box-shadow: -5px -5px 50px -16px var(--color);
+    to {
+      box-shadow: 0 -10px 80px -30px var(--color);
     }
   }
 </style>
