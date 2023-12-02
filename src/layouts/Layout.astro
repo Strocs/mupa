@@ -4,9 +4,12 @@ import { ViewTransitions } from "astro:transitions";
 interface Props {
   title: string;
   overflow?: boolean;
+  bg?: string;
 }
 
-const { title, overflow = false } = Astro.props;
+const { title, overflow = false, bg = "default" } = Astro.props;
+
+const BG_PATH = `url(/${bg}.png)`;
 ---
 
 <!doctype html>
@@ -40,9 +43,13 @@ const { title, overflow = false } = Astro.props;
     >
       <slot />
     </div>
+    <style define:vars={{ BG_PATH }}>
+      html {
+        background: var(--BG_PATH) no-repeat fixed center;
+      }
+    </style>
     <style is:global>
       html {
-        background: url("/background.png") no-repeat fixed center;
         background-size: cover;
         height: 100%;
         width: 100%;

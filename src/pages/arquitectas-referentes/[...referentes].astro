@@ -36,9 +36,11 @@ const {
 } = Astro.props;
 
 const gallery = await getPhotos(assets);
+const RGB = color[0];
+const colorName = color[1];
 ---
 
-<Layout title={name}>
+<Layout title={name} bg={colorName}>
   <Header />
   <main class="flex flex-col items-start h-full w-full gap-10 mb-10 px-6">
     <header class="font-source-code mt-2">
@@ -126,18 +128,18 @@ const gallery = await getPhotos(assets);
   <Footer />
 </Layout>
 
-<style define:vars={{ color }}>
+<style define:vars={{ RGB }}>
   aside {
-    box-shadow: 0 -10px 80px 0 var(--color);
+    box-shadow: 0 -10px 80px 0 var(--RGB);
     animation: shadow 3s linear infinite alternate-reverse;
   }
 
   @keyframes shadow {
     from {
-      box-shadow: 0 -10px 80px 0 var(--color);
+      box-shadow: 0 -10px 80px 0 var(--RGB);
     }
     to {
-      box-shadow: 0 -10px 80px -30px var(--color);
+      box-shadow: 0 -10px 80px -30px var(--RGB);
     }
   }
 </style>
