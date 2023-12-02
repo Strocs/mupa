@@ -15,15 +15,20 @@ import Image from "astro/components/Image.astro";
     >
       El Equipo
     </h1>
-    <article>
+    <article
+      class="sm:columns-2 lg:columns-3 [column-fill:_balance] space-y-4 mx-auto"
+    >
       {
         TEAM.map((p) => (
-          <section class="relative text-dark-grey">
-            <Image
-              src={p.image}
-              alt="imagen de olivia"
-              class="object-contain"
-            />
+          <section class=" text-dark-grey max-w-xs min-h-fit break-inside-avoid bg-rose-50 bg-opacity-40 rounded-xl p-4">
+            <figure class="overflow-hidden rounded-lg max-h-80 mb-4">
+              <Image
+                src={p.image}
+                alt="imagen de olivia"
+                class="-mt-10"
+                width={400}
+              />
+            </figure>
             <H2>{p.name}</H2>
             <p class="font-light -mt-4">{p.role}</p>
             <p class="py-2 text-sm">{p.description}</p>
@@ -31,6 +36,25 @@ import Image from "astro/components/Image.astro";
         ))
       }
     </article>
+    <section class="text-dark-grey mx-auto">
+      <div class="w-full h-px bg-light-grey mb-2"></div>
+      <H2>Colaboradores</H2>
+      <ul class="space-y-2">
+        {
+          COLLABORATES.map((col) => (
+            <li class="flex gap-2">
+              <span class="text-pink">•</span>
+              <p class="font-bold font-source-code">
+                {col.name}
+                <span class="font-light font-helvetica text-sm block sm:inline ml-6 -mt-1 sm:ml-0 sm:-mt-0">
+                  / {col.role}
+                </span>
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
   </main>
   <Footer />
 </Layout>
