@@ -1,9 +1,16 @@
 ---
 import { LEAD_ARCHITECTS } from "@data/lead-architects";
 const ids = LEAD_ARCHITECTS.map((architect) => architect.id);
+
+interface Props {
+  main?: boolean;
+}
+const { main = false } = Astro.props;
+
+const margin = main ? "-ml-12 md:-ml-0" : "";
 ---
 
-<div class="flex-shrink-0 -ml-12 md:-ml-0">
+<div class=`flex-shrink-0 ${margin}`>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 -10 790 740"

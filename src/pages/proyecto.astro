@@ -2,19 +2,23 @@
 import Footer from "@components/Footer.astro";
 import H2 from "@components/H2.astro";
 import Header from "@components/Header.astro";
+import MupaShapes from "@components/MupaShapes.astro";
 import { MUPA_IN_MEDIA } from "@data/mupa-in-media";
 import Layout from "@layouts/Layout.astro";
 ---
 
-<Layout title="El Pr oyecto">
+<Layout overflow title="El Proyecto">
   <Header />
-  <main class="px-6 grid gap-4">
+  <main class="px-6 grid gap-4 relative">
     <h1
-      class="text-[3.5rem] max-w-xl leading-none font-source-code font-black text-dark-grey"
+      class="text-[3.5rem] max-w-xl leading-none font-source-code font-black text-dark-grey absolute left-6 z-10"
     >
       El Proyecto
     </h1>
-    <article class="text-dark-grey grid gap-8">
+    <div class="absolute -right-28 -top-6">
+      <MupaShapes />
+    </div>
+    <article class="text-dark-grey grid gap-8 mt-44">
       <section class="grid gap-4">
         <H2>Mujeres, Arquitectura y Patrimonio Local</H2>
         <p>
@@ -69,7 +73,7 @@ import Layout from "@layouts/Layout.astro";
           {
             MUPA_IN_MEDIA.map(({ media, text, href }) => (
               <li class="flex gap-2">
-                <span class="text-red">•</span>
+                <span class="text-pink">•</span>
                 <a class=" hover:underline grid" href={href}>
                   <strong>{media}</strong>
                   <p class={`text-sky-700 text-sm ${text ? "" : "break-all"}`}>
