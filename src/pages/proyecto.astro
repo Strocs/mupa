@@ -74,7 +74,7 @@ import Layout from "@layouts/Layout.astro";
             MUPA_IN_MEDIA.map(({ media, text, href }) => (
               <li class="flex gap-2">
                 <span class="text-pink">•</span>
-                <a class=" hover:underline grid" href={href}>
+                <a class=" hover:underline grid" href={href} target="_blank">
                   <strong>{media}</strong>
                   <p class={`text-sky-700 text-sm ${text ? "" : "break-all"}`}>
                     {text ? text : href}
