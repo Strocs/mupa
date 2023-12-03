@@ -11,6 +11,7 @@ import { NAV_ITEMS } from "@data/nav";
 >
   <MenuButton />
   <ul
+    id="nav_list"
     class="gap-6 flex-shrink-0 w-full group/nav xl:flex hidden peer-checked:flex peer-checked:absolute peer-checked:bg-white peer-checked:z-40 peer-checked:inset-0 peer-checked:flex-col peer-checked:items-center peer-checked:pt-20 peer-checked:text-xl"
   >
     {
@@ -30,3 +31,22 @@ import { NAV_ITEMS } from "@data/nav";
     }
   </ul>
 </nav>
+
+<script>
+  function dropdownLinkBehaivior() {
+    const checkbox = document.querySelector(
+      "#toggle-nav-btn"
+    ) as HTMLInputElement;
+
+    const anchorList = document.querySelector("#nav_list") as HTMLUListElement;
+    const links = anchorList.querySelectorAll("a");
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        checkbox.checked = false;
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", dropdownLinkBehaivior);
+</script>
