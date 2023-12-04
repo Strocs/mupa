@@ -37,10 +37,10 @@ const {
 
 const gallery = await getPhotos(assets);
 const RGB = color[0];
-const colorName = color[1];
+const BG = `url(/${color[1]}.png)`;
 ---
 
-<Layout title={name} bg={colorName}>
+<Layout title={name} bg={color[1]}>
   <Header />
   <main class="flex flex-col items-start h-full w-full gap-10 mb-10 px-6">
     <header class="font-source-code mt-2">
@@ -58,6 +58,29 @@ const colorName = color[1];
         class="aspect-video overflow-hidden object-cover rounded-xl w-full max-w-4xl h-fit flex-shrink-0 sticky top-4 z-10 mb-4"
       >
         <Vimeo id={videoId} params={`color=${color.slice(1)}`} />
+        <button
+          id="close_video"
+          class="absolute top-4 right-4 z-50 text-white p-1"
+          style="display: none;"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-movie-off"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M8 4h10a2 2 0 0 1 2 2v10m-.592 3.42c-.362 .359 -.859 .58 -1.408 .58h-12a2 2 0 0 1 -2 -2v-12c0 -.539 .213 -1.028 .56 -1.388"
+            ></path><path d="M8 8v12"></path><path d="M16 4v8m0 4v4"
+            ></path><path d="M4 8h4"></path><path d="M4 16h4"></path><path
+              d="M4 12h8m4 0h4"></path><path d="M16 8h4"></path><path
+              d="M3 3l18 18"></path></svg
+          ></button
+        >
       </aside>
       <article class="max-w-lg h-full flex flex-col gap-10 text-dark-grey">
         <section>
@@ -124,35 +147,53 @@ const colorName = color[1];
     </div>
     <section
       id="gallery"
-      class="swiper flex flex-col gap-4 w-full bg-primary bg-opacity-90 backdrop-blur-md h-full fixed left-0 top-0 bottom-0 overflow-x-hidden"
+      class="swiper flex flex-col w-full h-full fixed left-0 top-0 right-0 bottom-0 overflow-x-hidden"
       style="display: none"
     >
       <figure class="swiper-wrapper flex h-full w-full">
         {
           gallery.map((photo) => (
-            <div class="swiper-slide h-full flex-shrink-0 w-full grid items-end">
+            <div class="swiper-slide h-full flex-shrink-0 w-full grid items-center">
               <Image
                 src={photo}
                 alt={`Materíal gráfico de la arquitecta ${name}`}
-                class="object-cover"
+                class="px-6 aspect-auto mx-auto"
                 height={900}
               />
             </div>
           ))
         }
       </figure>
-      <div class="swiper-pagination h-fit bg-rose-50"></div>
+      <div class="swiper-pagination h-fit text-center font-source-code py-2">
+      </div>
       <button
         id="close_gallery"
-        class="h-fit w-fit py-1 px-2 mx-auto bg-white rounded-lg mb-4"
-        >Cerrar</button
+        class="h-fit w-fit py-2 px-4 mx-auto bg-white rounded-md mb-4 font-source-code leading-none"
+        >Cerrar Galería <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="inline-block"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+            d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
+        ></button
       >
     </section>
   </main>
   <Footer />
 </Layout>
 
-<style define:vars={{ RGB }}>
+<style define:vars={{ RGB, BG }}>
+  .swiper {
+    background: var(--BG) no-repeat fixed center;
+    background-size: cover;
+  }
   aside {
     box-shadow: 0 -12px 60px -30px var(--RGB);
     animation: shadow 4s linear infinite alternate;
@@ -170,9 +211,11 @@ const colorName = color[1];
 
 <script>
   import Swiper from "swiper";
+  import { Pagination } from "swiper/modules";
 
   function loadGalleryHandler() {
     const swiper = new Swiper(".swiper", {
+      modules: [Pagination],
       spaceBetween: 30,
       loop: true,
       pagination: {
@@ -183,12 +226,17 @@ const colorName = color[1];
 
     const images = document.querySelectorAll("#image-wrapper");
     const body = document.body;
-    const closeBtn = document.getElementById("close_gallery");
+    const closeGalleryBtn = document.getElementById("close_gallery");
     const gallery = document.getElementById("gallery");
+    const video = document.querySelector("aside") as HTMLElement;
     const footer = document.getElementById("main_footer") as HTMLElement;
+    const closeVideoBtn = document.getElementById(
+      "close_video"
+    ) as HTMLButtonElement;
 
     function showGallery(e: Event, index: string | null) {
       e.preventDefault();
+      closeVideoBtn.style.display = "block";
       footer.style.zIndex = "-10";
       if (index) swiper.slideTo(+index, 0, false);
       gallery?.removeAttribute("style");
@@ -200,6 +248,8 @@ const colorName = color[1];
 
     function closeGallery(e: Event) {
       e.preventDefault();
+      closeVideoBtn.style.display = "none";
+      video.classList.add("z-10");
       footer.removeAttribute("style");
       const scrollY = body.style.top;
       body.style.position = "";
@@ -213,8 +263,10 @@ const colorName = color[1];
       image.addEventListener("click", (e) => showGallery(e, index));
     });
 
-    closeBtn?.addEventListener("click", closeGallery);
-
+    closeVideoBtn.addEventListener("click", () => {
+      video.classList.remove("z-10");
+    });
+    closeGalleryBtn?.addEventListener("click", closeGallery);
     window.addEventListener("scroll", () => {
       document.documentElement.style.setProperty(
         "--scroll-y",
