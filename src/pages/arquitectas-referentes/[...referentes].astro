@@ -128,7 +128,7 @@ const BG = `url(/${color[1]}.png)`;
               gallery.map((photo, i) => (
                 <a
                   id="image-wrapper"
-                  href=""
+                  href="#gallery"
                   data-index={i}
                   class="mb-2 overflow-hidden block rounded-lg hover:scale-105 duration-150"
                 >
@@ -152,10 +152,11 @@ const BG = `url(/${color[1]}.png)`;
     >
       <figure class="swiper-wrapper flex h-full w-full">
         {
-          gallery.map((photo) => (
+          gallery.map((photo, i) => (
             <div class="swiper-slide h-full flex-shrink-0 w-full grid items-center">
               <Image
                 src={photo}
+                data-index={i}
                 alt={`Materíal gráfico de la arquitecta ${name}`}
                 class="px-6 aspect-auto mx-auto"
                 height={900}
@@ -217,7 +218,6 @@ const BG = `url(/${color[1]}.png)`;
     const swiper = new Swiper(".swiper", {
       modules: [Pagination],
       spaceBetween: 30,
-      loop: true,
       pagination: {
         el: ".swiper-pagination",
         type: "fraction",
@@ -236,6 +236,7 @@ const BG = `url(/${color[1]}.png)`;
 
     function showGallery(e: Event, index: string | null) {
       e.preventDefault();
+      console.log(index);
       closeVideoBtn.style.display = "block";
       footer.style.zIndex = "-10";
       if (index) swiper.slideTo(+index, 0, false);
