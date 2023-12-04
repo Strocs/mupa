@@ -110,9 +110,9 @@ const colorName = color[1];
                 >
                   <Image
                     src={photo}
-                    alt="Imágen del trabajo ..."
+                    alt={`Materíal gráfico de la arquitecta ${name}`}
                     class=" max-w-full"
-                    height={900}
+                    width={400}
                   />
                 </a>
               ))
@@ -121,9 +121,32 @@ const colorName = color[1];
         </section>
       </article>
     </div>
-    <div>
-      <!-- GALLERY -->
-    </div>
+    <section
+      id="gallery"
+      class="swiper flex flex-col gap-4 w-full bg-primary bg-opacity-90 backdrop-blur-md h-full fixed left-0 top-0 bottom-0 overflow-x-hidden"
+      style="display: none"
+    >
+      <figure class="swiper-wrapper flex h-full w-full">
+        {
+          gallery.map((photo) => (
+            <div class="swiper-slide h-full flex-shrink-0 w-full grid items-end">
+              <Image
+                src={photo}
+                alt={`Materíal gráfico de la arquitecta ${name}`}
+                class="object-cover"
+                height={900}
+              />
+            </div>
+          ))
+        }
+      </figure>
+      <div class="swiper-pagination h-fit bg-rose-50"></div>
+      <button
+        id="close_gallery"
+        class="h-fit w-fit py-1 px-2 mx-auto bg-white rounded-lg mb-4"
+        >Cerrar</button
+      >
+    </section>
   </main>
   <Footer />
 </Layout>
@@ -145,29 +168,58 @@ const colorName = color[1];
 </style>
 
 <script>
-  function loadGalleryHandler() {
-    const images = document.querySelectorAll("#image-wrapper");
+  import Swiper from "swiper";
 
+  function loadGalleryHandler() {
+    const swiper = new Swiper(".swiper", {
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        type: "fraction",
+      },
+    });
+
+    const images = document.querySelectorAll("#image-wrapper");
+    const body = document.body;
+    const closeBtn = document.getElementById("close_gallery");
+    const gallery = document.getElementById("gallery");
+    const footer = document.getElementById("main_footer") as HTMLElement;
+
+    console.log(footer);
     function showGallery(e: Event) {
       e.preventDefault();
-      console.log("fire");
+      footer.style.zIndex = "-10";
+      gallery?.removeAttribute("style");
+      const scrollY =
+        document.documentElement.style.getPropertyValue("--scroll-y");
+      body.style.position = "fixed";
+      body.style.top = `-${scrollY}`;
+    }
+
+    function closeGallery(e: Event) {
+      e.preventDefault();
+      footer.removeAttribute("style");
+      const scrollY = body.style.top;
+      body.style.position = "";
+      body.style.top = "";
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      gallery?.setAttribute("style", "display:none");
     }
 
     images.forEach((image) => {
       image.addEventListener("click", showGallery);
     });
+
+    closeBtn?.addEventListener("click", closeGallery);
+
+    window.addEventListener("scroll", () => {
+      document.documentElement.style.setProperty(
+        "--scroll-y",
+        `${window.scrollY}px`
+      );
+    });
   }
 
   document.addEventListener("astro:page-load", loadGalleryHandler);
-  // const video = document.getElementById("video-wrapper");
-
-  // window.addEventListener("scroll", () => {
-  //   const videoTopOffset = video?.getBoundingClientRect().top;
-  //   console.log(videoTopOffset);
-  //   if (videoTopOffset && videoTopOffset <= 20) {
-  //     video.style.position = "fixed";
-  //   } else {
-  //     video.style.position = "";
-  //   }
-  // });
 </script>
