@@ -102,10 +102,11 @@ const colorName = color[1];
           <H2>Material Gráfico</H2>
           <figure class="columns-[3_125px] gap-x-2">
             {
-              gallery.map((photo) => (
+              gallery.map((photo, i) => (
                 <a
                   id="image-wrapper"
                   href=""
+                  data-index={i}
                   class="mb-2 overflow-hidden block rounded-lg hover:scale-105 duration-150"
                 >
                   <Image
@@ -186,10 +187,10 @@ const colorName = color[1];
     const gallery = document.getElementById("gallery");
     const footer = document.getElementById("main_footer") as HTMLElement;
 
-    console.log(footer);
-    function showGallery(e: Event) {
+    function showGallery(e: Event, index: string | null) {
       e.preventDefault();
       footer.style.zIndex = "-10";
+      if (index) swiper.slideTo(+index, 0, false);
       gallery?.removeAttribute("style");
       const scrollY =
         document.documentElement.style.getPropertyValue("--scroll-y");
@@ -208,7 +209,8 @@ const colorName = color[1];
     }
 
     images.forEach((image) => {
-      image.addEventListener("click", showGallery);
+      const index = image.getAttribute("data-index");
+      image.addEventListener("click", (e) => showGallery(e, index));
     });
 
     closeBtn?.addEventListener("click", closeGallery);
