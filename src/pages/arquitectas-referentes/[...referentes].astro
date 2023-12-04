@@ -42,7 +42,9 @@ const BG = `url(/${color[1]}.png)`;
 
 <Layout title={name} bg={color[1]}>
   <Header />
-  <main class="flex flex-col items-start h-full w-full gap-10 mb-10 px-6">
+  <main
+    class="flex flex-col items-start h-full w-full gap-10 mb-10 px-6 md:px-12"
+  >
     <header class="font-source-code mt-2">
       <p class="text-light-grey">arquitecta referente</p>
       <h1
@@ -55,7 +57,7 @@ const BG = `url(/${color[1]}.png)`;
     <div class="w-full flex flex-col gap-4 justify-between text-primary">
       <aside
         id="video-wrapper"
-        class="aspect-video overflow-hidden object-cover rounded-xl w-full max-w-4xl h-fit flex-shrink-0 sticky top-4 z-10 mb-4"
+        class="aspect-video overflow-hidden object-cover rounded-xl w-full max-w-4xl h-fit flex-shrink-0 sticky top-4 z-10 transition-[max_width,transform] duration-150"
       >
         <Vimeo id={videoId} params={`color=${color.slice(1)}`} />
         <button
@@ -82,7 +84,7 @@ const BG = `url(/${color[1]}.png)`;
           ></button
         >
       </aside>
-      <article class="max-w-lg h-full flex flex-col gap-10 text-dark-grey">
+      <article class="lg:max-w-lg h-full flex flex-col gap-10 text-dark-grey">
         <section>
           <ul>
             <li>
@@ -214,7 +216,8 @@ const BG = `url(/${color[1]}.png)`;
   import Swiper from "swiper";
   import { Pagination } from "swiper/modules";
 
-  function loadGalleryHandler() {
+  function loadGallery() {
+    // Swiper config
     const swiper = new Swiper(".swiper", {
       modules: [Pagination],
       spaceBetween: 30,
@@ -224,41 +227,51 @@ const BG = `url(/${color[1]}.png)`;
       },
     });
 
-    const images = document.querySelectorAll("#image-wrapper");
-    const body = document.body;
-    const closeGalleryBtn = document.getElementById("close_gallery");
-    const gallery = document.getElementById("gallery");
-    const video = document.querySelector("aside") as HTMLElement;
+    // Get Elements
+    const body = document.body as HTMLBodyElement;
     const footer = document.getElementById("main_footer") as HTMLElement;
+    const gallery = document.getElementById("gallery") as HTMLElement;
+    const video = document.querySelector("aside") as HTMLElement;
+    const images = document.querySelectorAll(
+      "#image-wrapper"
+    ) as NodeListOf<HTMLAnchorElement>;
+    const closeGalleryBtn = document.getElementById(
+      "close_gallery"
+    ) as HTMLButtonElement;
     const closeVideoBtn = document.getElementById(
       "close_video"
     ) as HTMLButtonElement;
 
     function showGallery(e: Event, index: string | null) {
       e.preventDefault();
-      console.log(index);
-      closeVideoBtn.style.display = "block";
-      footer.style.zIndex = "-10";
-      if (index) swiper.slideTo(+index, 0, false);
-      gallery?.removeAttribute("style");
       const scrollY =
         document.documentElement.style.getPropertyValue("--scroll-y");
+
+      if (index) swiper.slideTo(+index, 0, false);
+
+      closeVideoBtn.style.display = "block";
+      video.classList.add("md:max-w-xs", "md:-translate-x-14");
+      footer.style.zIndex = "-10";
+      gallery.removeAttribute("style");
       body.style.position = "fixed";
       body.style.top = `-${scrollY}`;
     }
 
     function closeGallery(e: Event) {
       e.preventDefault();
+      const scrollY = body.style.top;
+
       closeVideoBtn.style.display = "none";
       video.classList.add("z-10");
+      video.classList.remove("md:max-w-xs", "md:-translate-x-14");
       footer.removeAttribute("style");
-      const scrollY = body.style.top;
+      gallery.setAttribute("style", "display:none");
       body.style.position = "";
       body.style.top = "";
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
-      gallery?.setAttribute("style", "display:none");
     }
 
+    // Event Listener
     images.forEach((image) => {
       const index = image.getAttribute("data-index");
       image.addEventListener("click", (e) => showGallery(e, index));
@@ -267,7 +280,9 @@ const BG = `url(/${color[1]}.png)`;
     closeVideoBtn.addEventListener("click", () => {
       video.classList.remove("z-10");
     });
-    closeGalleryBtn?.addEventListener("click", closeGallery);
+
+    closeGalleryBtn.addEventListener("click", closeGallery);
+
     window.addEventListener("scroll", () => {
       document.documentElement.style.setProperty(
         "--scroll-y",
@@ -276,5 +291,5 @@ const BG = `url(/${color[1]}.png)`;
     });
   }
 
-  document.addEventListener("astro:page-load", loadGalleryHandler);
+  document.addEventListener("astro:page-load", loadGallery);
 </script>
