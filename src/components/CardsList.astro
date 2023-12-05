@@ -94,5 +94,5 @@ import CardItem from "./CardItem.astro";
     }
   }
   document.addEventListener("astro:after-swap", loadControls);
-  loadControls();
+  if (!document.startViewTransition) loadControls();
 </script>

@@ -38,6 +38,7 @@ const {
 const gallery = await getPhotos(assets);
 const RGB = color[0];
 const BG = `url(/${color[1]}.png)`;
+console.log(gallery[0]);
 ---
 
 <Layout title={name} bg={color[1]}>
@@ -150,29 +151,32 @@ const BG = `url(/${color[1]}.png)`;
     </div>
     <section
       id="gallery"
-      class="swiper flex flex-col w-full h-full fixed left-0 top-0 right-0 bottom-0 overflow-x-hidden"
+      class="swiper flex flex-col w-full h-full fixed left-0 top-0 right-0 bottom-0"
       style="display: none"
     >
       <figure class="swiper-wrapper flex h-full w-full">
         {
           gallery.map((photo, i) => (
-            <div class="swiper-slide h-full flex-shrink-0 w-full grid items-center cursor-grab">
+            <div class="swiper-slide cursor-grab">
               <Image
                 src={photo}
                 data-index={i}
                 alt={`Materíal gráfico de la arquitecta ${name}`}
-                class="px-6 aspect-auto mx-auto py-4"
-                height={850}
+                class="px-6 mx-auto py-4 object-cover w-full h-full"
+                height={photo.height / 2}
+                width={photo.width / 2}
               />
             </div>
           ))
         }
       </figure>
-      <div class="swiper-pagination h-fit text-center font-source-code py-2">
+      <div
+        class="swiper-pagination h-fit text-center font-source-code py-2 sticky bottom-0"
+      >
       </div>
       <button
         id="close_gallery"
-        class="h-fit w-fit py-2 px-4 mx-auto bg-white rounded-lg shadow-md mb-4 font-source-code leading-none hover:bg-dark-grey hover:text-white duration-150"
+        class="h-fit w-fit py-2 px-4 mx-auto bg-white rounded-lg shadow-md mb-4 font-source-code leading-none hover:bg-dark-grey hover:text-white duration-150 sticky bottom-0"
         >Cerrar Galería <svg
           xmlns="http://www.w3.org/2000/svg"
           class="inline-block"
@@ -216,12 +220,12 @@ const BG = `url(/${color[1]}.png)`;
 <script>
   import Swiper from "swiper";
   import { Pagination } from "swiper/modules";
-
   function loadGallery() {
     // Swiper config
     const swiper = new Swiper(".swiper", {
       modules: [Pagination],
       spaceBetween: 30,
+      slidesPerView: 1,
       pagination: {
         el: ".swiper-pagination",
         type: "fraction",
@@ -251,22 +255,18 @@ const BG = `url(/${color[1]}.png)`;
       video.classList.add("md:max-w-xs", "md:-translate-x-14");
       footer.style.zIndex = "-10";
       gallery.removeAttribute("style");
-      body.style.top = `-${window.scrollY}px`;
-      body.style.position = "fixed";
+      body.style.overflow = "hidden";
     }
 
     function closeGallery(e: Event) {
       e.preventDefault();
-      const scrollY = body.style.top;
 
       closeVideoBtn.style.display = "none";
       video.classList.add("z-10");
       video.classList.remove("md:max-w-xs", "md:-translate-x-14");
       footer.removeAttribute("style");
       gallery.setAttribute("style", "display:none");
-      body.style.position = "";
-      body.style.top = "";
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      body.style.overflow = "";
     }
 
     // Event Listener
@@ -283,4 +283,5 @@ const BG = `url(/${color[1]}.png)`;
   }
 
   document.addEventListener("astro:page-load", loadGallery);
+  if (!document.startViewTransition) loadGallery();
 </script>

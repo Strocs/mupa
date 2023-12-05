@@ -65,4 +65,5 @@ flex-col text-sm ${menuHeight} overflow-hidden flex whitespace-nowrap transition
   }
 
   document.addEventListener("astro:page-load", closeCheckbox);
+  if (!document.startViewTransition) closeCheckbox();
 </script>

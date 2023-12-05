@@ -49,4 +49,5 @@ import { NAV_ITEMS } from "@data/nav";
   }
 
   document.addEventListener("astro:page-load", dropdownLinkBehaivior);
+  if (!document.startViewTransition) dropdownLinkBehaivior();
 </script>
