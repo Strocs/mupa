@@ -129,14 +129,14 @@ const BG = `url(/${color[1]}.png)`;
         </section>
         <section>
           <H2>Material Gráfico</H2>
-          <figure class="columns-[3_125px] gap-x-2">
+          <figure class="columns-[3_125px] gap-x-4">
             {
               gallery.map((photo, i) => (
                 <a
                   id="image-wrapper"
                   href="#gallery"
                   data-index={i}
-                  class="mb-2 overflow-hidden block rounded-lg hover:scale-105 duration-150"
+                  class="mb-4 overflow-hidden block rounded-lg hover:scale-105 duration-150"
                 >
                   <Image
                     src={photo}
@@ -159,13 +159,13 @@ const BG = `url(/${color[1]}.png)`;
       <figure class="swiper-wrapper flex h-full w-full">
         {
           gallery.map((photo, i) => (
-            <div class="swiper-slide h-full flex-shrink-0 w-full grid items-center">
+            <div class="swiper-slide h-full flex-shrink-0 w-full grid items-center cursor-grab">
               <Image
                 src={photo}
                 data-index={i}
                 alt={`Materíal gráfico de la arquitecta ${name}`}
-                class="px-6 aspect-auto mx-auto"
-                height={900}
+                class="px-6 aspect-auto mx-auto py-4"
+                height={850}
               />
             </div>
           ))
@@ -175,7 +175,7 @@ const BG = `url(/${color[1]}.png)`;
       </div>
       <button
         id="close_gallery"
-        class="h-fit w-fit py-2 px-4 mx-auto bg-white rounded-md mb-4 font-source-code leading-none"
+        class="h-fit w-fit py-2 px-4 mx-auto bg-white rounded-lg shadow-md mb-4 font-source-code leading-none hover:bg-dark-grey hover:text-white duration-150"
         >Cerrar Galería <svg
           xmlns="http://www.w3.org/2000/svg"
           class="inline-block"
@@ -248,17 +248,14 @@ const BG = `url(/${color[1]}.png)`;
 
     function showGallery(e: Event, index: string | null) {
       e.preventDefault();
-      const scrollY =
-        document.documentElement.style.getPropertyValue("--scroll-y");
-
       if (index) swiper.slideTo(+index, 0, false);
 
       closeVideoBtn.style.display = "block";
       video.classList.add("md:max-w-xs", "md:-translate-x-14");
       footer.style.zIndex = "-10";
       gallery.removeAttribute("style");
+      body.style.top = `-${window.scrollY}px`;
       body.style.position = "fixed";
-      body.style.top = `-${scrollY}`;
     }
 
     function closeGallery(e: Event) {
@@ -286,13 +283,6 @@ const BG = `url(/${color[1]}.png)`;
     });
 
     closeGalleryBtn.addEventListener("click", closeGallery);
-
-    window.addEventListener("scroll", () => {
-      document.documentElement.style.setProperty(
-        "--scroll-y",
-        `${window.scrollY}px`
-      );
-    });
   }
 
   document.addEventListener("astro:page-load", loadGallery);
