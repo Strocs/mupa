@@ -4,17 +4,20 @@ const ids = LEAD_ARCHITECTS.map((architect) => architect.id);
 
 interface Props {
   main?: boolean;
+  forProject?: boolean;
 }
-const { main = false } = Astro.props;
+
+const { main = false, forProject = false } = Astro.props;
 
 const margin = main ? "-ml-12 md:-ml-0" : "";
+const width = forProject ? "xl:w-[20rem]" : "xl:w-[28rem]";
 ---
 
 <div class=`flex-shrink-0 ${margin}`>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 -10 790 740"
-    class="aspect-square w-[16rem] md:w-[20rem] xl:w-[28rem]"
+    class=`aspect-square w-[16rem] md:w-[20rem] ${width}`
   >
     <g id="shapes_mupa">
       <path
