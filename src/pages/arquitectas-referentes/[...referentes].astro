@@ -43,7 +43,7 @@ const BG = `url(/${color[1]}.png)`;
 <Layout title={name} bg={color[1]}>
   <Header />
   <main
-    class="flex flex-col items-start h-full w-full gap-10 mb-10 px-6 md:px-12"
+    class="flex flex-col items-start h-full w-full gap-10 mb-10 px-6 md:px-12 xl:mb-20"
   >
     <header class="font-source-code mt-2">
       <p class="text-light-grey">arquitecta referente</p>
@@ -59,12 +59,12 @@ const BG = `url(/${color[1]}.png)`;
     >
       <aside
         id="video-wrapper"
-        class="aspect-video overflow-hidden object-cover rounded-xl w-full max-w-4xl h-fit flex-shrink-0 sticky top-4 z-10 transition-[max_width,transform] duration-150"
+        class="aspect-video overflow-hidden object-cover rounded-xl w-full max-w-3xl h-fit flex-shrink-0 sticky top-4 xl:top-12 z-10 transition-[max_width,transform] duration-150"
       >
         <Vimeo id={videoId} params={`color=${color.slice(1)}`} />
         <button
           id="close_video"
-          class="absolute top-4 right-4 z-50 text-white p-1"
+          class="absolute top-4 right-4 z-50 text-white p-1 hover:scale-110 duration-150"
           style="display: none;"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@ const BG = `url(/${color[1]}.png)`;
         >
       </aside>
       <article
-        class="lg:max-w-lg h-full flex flex-col gap-10 text-dark-grey xl:order-first"
+        class="lg:max-w-lg h-full flex flex-col gap-10 text-dark-grey xl:order-first xl:flex-shrink-0"
       >
         <section>
           <ul>
