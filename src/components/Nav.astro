@@ -12,7 +12,7 @@ import { NAV_ITEMS } from "@data/nav";
   <MenuButton />
   <ul
     id="nav_list"
-    class="gap-6 flex-shrink-0 w-full group/nav xl:flex hidden peer-checked:flex peer-checked:absolute peer-checked:bg-white peer-checked:z-40 peer-checked:inset-0 peer-checked:flex-col peer-checked:items-center peer-checked:pt-20 peer-checked:text-xl"
+    class="gap-6 flex-shrink-0 w-full xl:w-fit group/nav xl:flex hidden peer-checked:flex peer-checked:absolute peer-checked:bg-white peer-checked:z-40 peer-checked:inset-0 peer-checked:flex-col peer-checked:items-center peer-checked:pt-20 peer-checked:text-xl"
   >
     {
       NAV_ITEMS.map((item) => {
@@ -33,6 +33,7 @@ import { NAV_ITEMS } from "@data/nav";
 </nav>
 
 <script>
+  // TOOD: CLOSE OTHER DROPDOWN WHEN OPEN ONE
   function dropdownLinkBehaivior() {
     const checkbox = document.querySelector(
       "#toggle-nav-btn"

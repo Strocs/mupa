@@ -5,7 +5,6 @@ import { Image } from "astro:assets";
 interface Props {
   img: ImageMetadata;
   name: string;
-  color: string;
   id: string;
 }
 
@@ -19,7 +18,7 @@ const href = "/arquitectas-referentes/" + nameToPath({ name });
 >
   <a href={href} class="h-full w-full">
     <h2
-      class="absolute bottom-2 left-2 right-2 text-lg sm:text-xl leading-none text-white font-black z-10 font-source-code"
+      class="absolute bottom-2 left-2 right-2 text-lg sm:text-xl text-white font-black z-10 font-source-code"
       transition:name=`name-${id}`
     >
       {name}

@@ -19,7 +19,7 @@ const menuHeight = hrefPrefix?.includes("referentes")
   <input type="checkbox" id=`${title}-dropdown-menu` hidden class="peer" />
   <label
     for=`${title}-dropdown-menu`
-    class="flex items-center gap-1 justify-center cursor-pointer w-fit mx-auto relative after:content-['arquitectas'] after:absolute after:-top-3 after:text-sm after:text-light-grey"
+    class="flex items-center gap-1 justify-center cursor-pointer w-fit mx-auto relative after:content-['arquitectas'] after:absolute after:-top-3 lg:after:left-0 lg:after:-top-2 after:text-sm after:text-light-grey"
   >
     {title}
     <svg
@@ -37,11 +37,11 @@ const menuHeight = hrefPrefix?.includes("referentes")
   <ul
     role="list"
     class=`rounded-md h-0
-flex-col lg:items-end text-sm ${menuHeight} bg-white overflow-hidden flex whitespace-nowrap transition-all duration-150s group/dropdown-list z-20`
+flex-col text-sm ${menuHeight} overflow-hidden flex whitespace-nowrap transition-all duration-150s group/dropdown-list z-20 xl:absolute gap-1`
   >
     {
       list.map((item) => (
-        <li class="w-fit text-dark-grey font-source-code group/dropdown-item p-1 group-hover/dropdown-list:opacity-50 hover:!opacity-100 ml-16">
+        <li class="w-fit text-dark-grey bg-white rounded-md font-source-code group/dropdown-item px-2 group-hover/dropdown-list:opacity-50 hover:!opacity-100 ml-16 xl:ml-0">
           <a href={`/${hrefPrefix}/${nameToPath({ name: item })}`}>
             {item}
             <div class="bg-light-grey h-px w-0 group-hover/dropdown-item:w-full transition-[width] duration-150" />

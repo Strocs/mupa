@@ -5,14 +5,13 @@ import CardItem from "./CardItem.astro";
 
 <ul
   id="cards-list"
-  class="flex gap-4 group overflow-x-scroll py-2 scrollbar-hide scroll-smooth"
+  class="flex gap-4 group overflow-x-scroll xl:overflow-x-visible py-2 scrollbar-hide scroll-smooth"
 >
   {
     LEAD_ARCHITECTS.map((architect) => (
       <CardItem
         name={architect.short_name}
         img={architect.main_img}
-        color={architect.color}
         id={architect.id}
       />
     ))

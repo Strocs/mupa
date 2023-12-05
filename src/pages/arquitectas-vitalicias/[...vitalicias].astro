@@ -45,7 +45,9 @@ const {
         {short_name}
       </h1>
     </div>
-    <article class="h-full flex flex-col gap-10 text-dark-grey">
+    <div
+      class="h-full flex flex-col xl:flex-row gap-10 xl:gap-32 text-dark-grey"
+    >
       {
         image && (
           <aside>
@@ -54,92 +56,93 @@ const {
               alt={`Imágen de la arquitecta ${name}`}
               class="rounded-xl"
               width={1080}
-              height={900}
             />
           </aside>
         )
       }
-      <section>
-        <ul>
-          <li>
-            <h3><strong class="font-medium">Nombre:</strong> {" "}{name}</h3>
-          </li>
-          <li>
-            <h3>
-              <strong class="font-medium">Fecha de nacimiento:</strong>
-              {" "}{birth_date}
-            </h3>
-          </li>
-          <li>
-            <h3>
-              <strong class="font-medium">Lugar de nacimiento:</strong>
-              {" "}{birth_place}
-            </h3>
-          </li>
-          {
-            death_date && (
-              <li>
-                <h3>
-                  <strong class="font-medium">Fecha de defunción:</strong>{" "}
-                  {death_date}
-                </h3>
-              </li>
-            )
-          }
-          <li>
-            <h3>
-              <strong class="font-medium">Estudios de Arquitectura:</strong>
-              {" "}{university}
-            </h3>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <H2>Trayectoria</H2>
-        <Paragraph description={description} />
-      </section>
-      {
-        footnotes && (
-          <footer>
-            <h2 id="notes_heading" class="sr-only">
-              Pie de página
-            </h2>
-            <div class="w-full h-px bg-light-grey mb-2" />
-            <ol>
-              {footnotes.map(({ id, title, text }) => (
-                <li id={id} class="grid grid-flow-col gap-2 text-sm mb-2">
-                  <a
-                    href={`#${id}_ref`}
-                    aria-label="Volver al conteindo"
-                    class="text-pink font-bold"
-                  >
-                    {id}
-                  </a>
-                  <p>
-                    {title && <b>{title}</b>}
-                    {text.split("\f").map((textOrLink, index) => {
-                      if (index % 2 === 0) {
-                        return textOrLink;
-                      }
-
-                      return (
-                        <a
-                          href={textOrLink}
-                          target="_blank"
-                          class="text-sky-700 break-all w-fit hover:underline"
-                        >
-                          {textOrLink}
-                        </a>
-                      );
-                    })}
-                  </p>
+      <article class="max-w-xl flex flex-col gap-10 xl:order-first">
+        <section class="">
+          <ul>
+            <li>
+              <h3><strong class="font-medium">Nombre:</strong> {" "}{name}</h3>
+            </li>
+            <li>
+              <h3>
+                <strong class="font-medium">Fecha de nacimiento:</strong>
+                {" "}{birth_date}
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <strong class="font-medium">Lugar de nacimiento:</strong>
+                {" "}{birth_place}
+              </h3>
+            </li>
+            {
+              death_date && (
+                <li>
+                  <h3>
+                    <strong class="font-medium">Fecha de defunción:</strong>{" "}
+                    {death_date}
+                  </h3>
                 </li>
-              ))}
-            </ol>
-          </footer>
-        )
-      }
-    </article>
+              )
+            }
+            <li>
+              <h3>
+                <strong class="font-medium">Estudios de Arquitectura:</strong>
+                {" "}{university}
+              </h3>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <H2>Trayectoria</H2>
+          <Paragraph description={description} />
+        </section>
+        {
+          footnotes && (
+            <footer>
+              <h2 id="notes_heading" class="sr-only">
+                Pie de página
+              </h2>
+              <div class="w-full h-px bg-light-grey mb-2" />
+              <ol>
+                {footnotes.map(({ id, title, text }) => (
+                  <li id={id} class="grid grid-flow-col gap-2 text-sm mb-2">
+                    <a
+                      href={`#${id}_ref`}
+                      aria-label="Volver al conteindo"
+                      class="text-pink font-bold"
+                    >
+                      {id}
+                    </a>
+                    <p>
+                      {title && <b>{title}</b>}
+                      {text.split("\f").map((textOrLink, index) => {
+                        if (index % 2 === 0) {
+                          return textOrLink;
+                        }
+
+                        return (
+                          <a
+                            href={textOrLink}
+                            target="_blank"
+                            class="text-sky-700 break-all w-fit hover:underline"
+                          >
+                            {textOrLink}
+                          </a>
+                        );
+                      })}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </footer>
+          )
+        }
+      </article>
+    </div>
   </main>
   <Footer />
 </Layout>

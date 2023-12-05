@@ -54,7 +54,9 @@ const BG = `url(/${color[1]}.png)`;
         {short_name}
       </h1>
     </header>
-    <div class="w-full flex flex-col gap-4 justify-between text-primary">
+    <div
+      class="w-full flex flex-col xl:flex-row gap-4 justify-between text-primary"
+    >
       <aside
         id="video-wrapper"
         class="aspect-video overflow-hidden object-cover rounded-xl w-full max-w-4xl h-fit flex-shrink-0 sticky top-4 z-10 transition-[max_width,transform] duration-150"
@@ -84,7 +86,9 @@ const BG = `url(/${color[1]}.png)`;
           ></button
         >
       </aside>
-      <article class="lg:max-w-lg h-full flex flex-col gap-10 text-dark-grey">
+      <article
+        class="lg:max-w-lg h-full flex flex-col gap-10 text-dark-grey xl:order-first"
+      >
         <section>
           <ul>
             <li>
