@@ -51,3 +51,18 @@ flex-col text-sm ${menuHeight} overflow-hidden flex whitespace-nowrap transition
     }
   </ul>
 </li>
+
+<script>
+  function closeCheckbox() {
+    const checkboxList = document.querySelectorAll(
+      "[id*=dropdown-menu]"
+    ) as NodeListOf<HTMLInputElement>;
+    checkboxList.forEach((checkbox, i) => {
+      checkbox.addEventListener("change", () => {
+        checkboxList[-i + 1].checked = false;
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", closeCheckbox);
+</script>
