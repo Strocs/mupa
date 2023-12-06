@@ -152,17 +152,17 @@ console.log(gallery[0]);
     <section
       id="gallery"
       class="swiper flex flex-col w-full h-full fixed left-0 top-0 right-0 bottom-0"
-      style="display: none"
+      style="display: flex"
     >
-      <figure class="swiper-wrapper flex h-full w-full">
+      <figure class="swiper-wrapper flex h-full">
         {
           gallery.map((photo, i) => (
-            <div class="swiper-slide cursor-grab">
+            <div class="swiper-slide cursor-grabshrink-0 max-h-[92%] sm:max-h-[90%]">
               <Image
                 src={photo}
                 data-index={i}
                 alt={`Materíal gráfico de la arquitecta ${name}`}
-                class="px-6 mx-auto py-4 object-cover w-full h-full"
+                class="px-6 py-4 w-full h-full object-contain"
                 height={photo.height / 2}
                 width={photo.width / 2}
               />
@@ -171,12 +171,12 @@ console.log(gallery[0]);
         }
       </figure>
       <div
-        class="swiper-pagination h-fit text-center font-source-code py-2 sticky bottom-0"
+        class="swiper-pagination h-fit text-center font-source-code py-2 sticky bottom-14"
       >
       </div>
       <button
         id="close_gallery"
-        class="h-fit w-fit py-2 px-4 mx-auto bg-white rounded-lg shadow-md mb-4 font-source-code leading-none hover:bg-dark-grey hover:text-white duration-150 sticky bottom-0"
+        class="h-fit w-fit py-2 px-4 mx-auto bg-white rounded-lg shadow-md mb-4 font-source-code leading-none hover:bg-dark-grey hover:text-white duration-150 sticky bottom-4"
         >Cerrar Galería <svg
           xmlns="http://www.w3.org/2000/svg"
           class="inline-block"
