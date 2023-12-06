@@ -38,7 +38,6 @@ const {
 const gallery = await getPhotos(assets);
 const RGB = color[0];
 const BG = `url(/${color[1]}.png)`;
-console.log(gallery[0]);
 ---
 
 <Layout title={name} bg={color[1]}>
@@ -54,11 +53,11 @@ console.log(gallery[0]);
       </h1>
     </header>
     <div
-      class="w-full flex flex-col xl:flex-row gap-10 justify-between text-primary"
+      class="w-full flex flex-col xl:flex-row gap-12 justify-between text-primary"
     >
       <aside
         id="video-wrapper"
-        class="aspect-video overflow-hidden rounded-xl w-full max-w-3xl h-fit sticky top-4 xl:top-12 z-10 transition-[max_width,transform] duration-150"
+        class="aspect-video overflow-hidden rounded-xl w-full max-w-4xl h-fit sticky top-4 xl:top-12 z-10 transition-[max_width,transform] duration-150"
       >
         <Vimeo id={videoId} params={`color=${color.slice(1)}`} />
         <button
