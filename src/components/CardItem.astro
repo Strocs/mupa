@@ -14,20 +14,20 @@ const href = "/arquitectas-referentes/" + nameToPath({ name });
 
 <li
   id={id}
-  class="architect_items relative w-full max-w-[7rem] sm:max-w-[8rem] shrink-0 h-full rounded-xl overflow-hidden shadow-md group-hover:grayscale hover:!grayscale-0 transition-[filter] duration-150"
+  class="architect_items relative w-full max-w-[7rem] sm:max-w-[8rem] shrink-0 h-full rounded-xl overflow-hidden shadow-lg group-hover:grayscale hover:!grayscale-0 transition-[filter] duration-150 after:content-[''] after:h-1/2 after:absolute after:bg-gradient-to-b from-transparent to-primary after:bottom-0 after:w-full"
 >
   <a href={href} class="h-full w-full">
     <h2
-      class="absolute bottom-2 left-2 right-2 text-lg sm:text-xl text-white font-black z-10 font-source-code"
+      class="absolute bottom-1 left-3 right-2 text-base sm:text-lg text-white font-black z-10 font-source-code grid"
       transition:name=`name-${id}`
     >
-      {name}
+      {name.split(" ").map((n) => <span class="-mt-2">{n}</span>)}
     </h2>
     <Image
       src={img}
       class="h-full w-full object-cover aspect-[9/14]"
       alt={`${name}`}
-      width={500}
+      height={300}
     />
   </a>
 </li>

@@ -22,7 +22,7 @@ export const LEAD_ARCHITECTS = [
   {
     id: crypto.randomUUID(),
     name: 'Alicia Veronica Silva Riveros',
-    short_name: 'Alicia Silva',
+    short_name: 'Alicia Silva Riveros',
     birth_date: '1954',
     birth_place: 'Quillota',
     university: 'Universidad de Chile, sede Valparaíso',
@@ -38,7 +38,7 @@ export const LEAD_ARCHITECTS = [
   {
     id: crypto.randomUUID(),
     name: 'Libertad Fatima Margarita Morales Vasquez',
-    short_name: 'Libertad Morales',
+    short_name: 'Libertad Morales Vasquez',
     birth_date: '3 de octubre 1957',
     birth_place: 'San Fernando',
     university: 'Universidad de Chile',
@@ -54,7 +54,7 @@ export const LEAD_ARCHITECTS = [
   {
     id: crypto.randomUUID(),
     name: 'Paz Walker Fernández',
-    short_name: 'Paz Walker',
+    short_name: 'Paz Walker Fernández',
     birth_date: '1 de febrero de 1951',
     birth_place: 'Concepción  ',
     university:
@@ -71,7 +71,7 @@ export const LEAD_ARCHITECTS = [
   {
     id: crypto.randomUUID(),
     name: 'Juana Noemi Varela Kawasaki',
-    short_name: 'Juana Varela',
+    short_name: 'Juana Varela Kawasaki',
     birth_date: '5 de septiembre de 1948',
     birth_place: 'Santiago de Chile',
     university: 'Universidad de Chile',
@@ -87,7 +87,7 @@ export const LEAD_ARCHITECTS = [
   {
     id: crypto.randomUUID(),
     name: 'Maria Teresa Fierro Page',
-    short_name: 'Maria Teresa Fierro',
+    short_name: 'Maria Teresa Fierro Page',
     birth_date: '23 de noviembre de 1953',
     birth_place: 'Santiago',
     university: 'Universidad Católica de Valparaíso',
@@ -103,7 +103,7 @@ export const LEAD_ARCHITECTS = [
   {
     id: crypto.randomUUID(),
     name: 'Viviana Margarita Hernández Pérez',
-    short_name: 'Viviana Hernandez',
+    short_name: 'Viviana Hernandez Pérez',
     birth_date: '27 de agosto de 1952',
     birth_place: 'Chicolco-Petorca',
     university: 'Universidad de Chile',
