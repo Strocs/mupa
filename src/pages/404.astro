@@ -2,11 +2,41 @@
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
 import Logo from "@components/Logo.astro";
+import MupaShapes from "@components/MupaShapes.astro";
 import Layout from "src/layouts/Layout.astro";
 ---
 
 <Layout title="MUPA | Página no encontrada">
   <Header />
-  <main></main>
+  <main class="grid -mt-20 px-4 sm:px-12">
+    <div class="mx-auto">
+      <MupaShapes error404 forProject />
+    </div>
+    <h1 class="text-4xl font-black font-source-code text-dark-grey text-center">
+      Te haz encontrado con el temido <span class="text-red">error 404</span>!
+    </h1>
+    <p class="text-center text-light-grey">
+      Seguramente tu url esté mal escrita, verifica tu link o vuelve al inicio
+    </p>
+    <a
+      href="/"
+      class="bg-white shadow-lg rounded-lg mx-auto px-4 py-2 leading-none font-source-code text-dark-grey hover:bg-dark-grey hover:text-white duration-150 inline-block my-10"
+      >Volver al Inicio <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="inline"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M9 14l-4 -4l4 -4"></path><path d="M5 10h11a4 4 0 1 1 0 8h-1"
+        ></path></svg
+      ></a
+    >
+  </main>
   <Footer />
 </Layout>
