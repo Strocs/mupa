@@ -152,12 +152,12 @@ console.log(gallery[0]);
     <section
       id="gallery"
       class="swiper flex flex-col w-full h-full fixed left-0 top-0 right-0 bottom-0"
-      style="display: flex"
+      style="display: none"
     >
       <figure class="swiper-wrapper flex h-full">
         {
           gallery.map((photo, i) => (
-            <div class="swiper-slide cursor-grabshrink-0 max-h-[92%] sm:max-h-[90%]">
+            <div class="swiper-slide cursor-grab shrink-0 max-h-[92%] sm:max-h-[90%]">
               <Image
                 src={photo}
                 data-index={i}
