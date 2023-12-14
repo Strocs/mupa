@@ -9,7 +9,7 @@ import Paragraph from "@components/Paragraph.astro";
 import Footer from "@components/Footer.astro";
 import H2 from "@components/H2.astro";
 
-import { Vimeo } from "astro-embed";
+import { YouTube } from "astro-embed";
 import { Image } from "astro:assets";
 
 export const getStaticPaths = (async () => {
@@ -59,7 +59,11 @@ const BG = `url(/${color[1]}.png)`;
         id="video-wrapper"
         class="aspect-video overflow-hidden rounded-xl w-full max-w-4xl h-fit sticky top-4 xl:top-12 z-10 transition-[max_width,transform] duration-150"
       >
-        <Vimeo id={videoId} params={`color=${color.slice(1)}`} />
+        <YouTube
+          id={videoId}
+          class="max-w-full"
+          params="showinfo=0&modestbranding=1&fs=0"
+        />
         <button
           id="close_video"
           class="absolute top-2 left-2 z-50 text-white bg-black rounded p-1 hover:bg-white hover:text-dark-grey duration-150"

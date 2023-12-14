@@ -33,7 +33,7 @@ export const LEAD_ARCHITECTS = [
     color: ['#9571b0', 'purple'],
     main_img: aliciaPhoto,
     assets: aliciaGallery,
-    videoId: '410321929'
+    videoId: 'J0_owA-H5yM'
   },
   {
     id: crypto.randomUUID(),
@@ -49,7 +49,7 @@ export const LEAD_ARCHITECTS = [
     color: ['#98963b', 'ocher'],
     main_img: libertadPhoto,
     assets: libertadGallery,
-    videoId: '410321929'
+    videoId: 'FO_zeve1uUc'
   },
   {
     id: crypto.randomUUID(),
@@ -66,7 +66,7 @@ export const LEAD_ARCHITECTS = [
     color: ['#ad60a3', 'fuchsia'],
     main_img: pazPhoto,
     assets: pazGallery,
-    videoId: '410321929'
+    videoId: 'KgetR606kZs'
   },
   {
     id: crypto.randomUUID(),
@@ -82,7 +82,7 @@ export const LEAD_ARCHITECTS = [
     color: ['#f4c602', 'yellow'],
     main_img: juanaPhoto,
     assets: juanaGallery,
-    videoId: '410321929'
+    videoId: 'CcsjYmeMhWg'
   },
   {
     id: crypto.randomUUID(),
@@ -98,7 +98,7 @@ export const LEAD_ARCHITECTS = [
     color: ['#214988', 'blue'],
     main_img: mariaPhoto,
     assets: mariaGallery,
-    videoId: '410321929'
+    videoId: 'YshuqyR8YAo'
   },
   {
     id: crypto.randomUUID(),
@@ -114,6 +114,6 @@ export const LEAD_ARCHITECTS = [
     color: ['#cf6a58', 'red'],
     main_img: vivianaPhoto,
     assets: vivianaGallery,
-    videoId: '410321929'
+    videoId: 'bbFX57oKcxQ'
   }
 ]
