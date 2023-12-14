@@ -12,7 +12,7 @@ export default defineConfig({
     '/arquitectas-referentes': '/',
     '/arquitectas-vitalicias': '/'
   },
-  output: 'server',
+  output: 'static',
   adapter: vercel({
     webAnalytics: {
       enabled: true,
