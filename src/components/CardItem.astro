@@ -9,14 +9,26 @@ interface Props {
   color: string;
 }
 
+interface BgColors {
+  [key: typeof color]: string;
+}
+
 const { img, name, id, color } = Astro.props;
 const href = "/arquitectas-referentes/" + nameToPath({ name });
+
+const bgColors: BgColors = {
+  yellow: "bg-yellow",
+  red: "bg-red",
+  ocher: "bg-ocher",
+  purple: "bg-purple",
+  blue: "bg-blue",
+  fuchsia: "bg-fuchsia",
+};
 ---
 
 <li
   id={id}
-  class="architect_items relative w-full max-w-[7rem] sm:max-w-[8rem] shrink-0 h-full rounded-xl overflow-hidden shadow-sm group-hover:grayscale hover:!grayscale-0 transition-[filter] duration-150 after:content-[''] after:h-1/2 after:absolute after:bg-gradient-to-b from-transparent to-primary after:bottom-0 after:w-full"
-  style=`background-color: ${color};`
+  class=`architect_items relative w-full max-w-[7rem] sm:max-w-[8rem] shrink-0 h-full rounded-xl overflow-hidden shadow-sm group-hover:grayscale hover:!grayscale-0 transition-[filter] duration-150 after:content-[''] after:h-1/2 after:absolute after:bg-gradient-to-b after:from-transparent after:to-primary after:opacity-50 after:bottom-0 after:w-full ${bgColors[color]} bg-opacity-50`
 >
   <a href={href} class="h-full w-full">
     <h2
