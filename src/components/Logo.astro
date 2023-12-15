@@ -9,7 +9,6 @@ let sizeStyle = large
 <a
   href="/"
   class=`w-full ${sizeStyle} flex flex-col sm:items-end gap-4 group flex-shrink-0`
-  aria-label="Logo MUPA"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -47,6 +46,7 @@ let sizeStyle = large
   {
     large && (
       <div class="md:w-[46%] grid gap-4">
+        <p class="sr-only">MUPA</p>
         <strong class="text-light-grey">
           Mujeres, patrimonio y arquitectura local.
         </strong>
