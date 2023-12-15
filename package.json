@@ -1,14 +1,13 @@
 {
   "dependencies": {
     "@astrojs/sitemap": "^3.0.3",
-    "@astrojs/tailwind": "^5.0.2",
+    "@astrojs/tailwind": "^5.0.3",
     "@astrojs/vercel": "^6.1.0",
-    "@playwright/test": "^1.40.1",
-    "astro": "^3.6.0",
-    "astro-embed": "^0.6.0",
-    "sharp": "^0.32.6",
+    "astro": "^4.0.5",
+    "astro-embed": "^0.6.1",
+    "sharp": "^0.33.0",
     "swiper": "^11.0.5",
-    "tailwindcss": "^3.3.5"
+    "tailwindcss": "^3.3.6"
   },
   "name": "mupa",
   "scripts": {
@@ -19,8 +18,9 @@
     "start": "astro dev"
   },
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.9.9",
   "devDependencies": {
-    "@types/node": "^20.10.0"
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.10.4"
   }
 }
