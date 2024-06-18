@@ -1,4 +1,5 @@
 ---
+import { YouTube } from "astro-embed";
 import InstitucionalLogos from "./InstitucionalLogos.astro";
 import InstagramIcon from "./icons/InstagramIcon.astro";
 import YouTubeIcon from "./icons/YouTubeIcon.astro";
@@ -8,11 +9,13 @@ import YouTubeIcon from "./icons/YouTubeIcon.astro";
   id="main_footer"
   class="h-fit w-full flex flex-col xl:flex-row gap-6 items-center justify-between self-end relative my-6 z-50 px-6 md:px-12"
 >
-  <div class="flex flex-col w-full gap-6 xl:w-fit">
-    <div
-      class="bg-[url('/default.png')] bg-left-top h-8 w-full bg-cover bg-no-repeat bg-fixed rounded-lg"
+  <div class="flex flex-col w-full gap-4 xl:w-fit">
+    <button
+      id="open-trailer"
+      class="bg-dark-grey hover:scale-105 duration-150 text-white font-source-code h-8 w-full rounded-lg"
     >
-    </div>
+      !Mira nuestro trailer aquí!
+    </button>
     <div
       class="font-source-code text-dark-grey text-center flex flex-col xl:flex-row items-center gap-2"
     >
@@ -40,4 +43,66 @@ import YouTubeIcon from "./icons/YouTubeIcon.astro";
     </div>
   </div>
   <InstitucionalLogos />
+  <div
+    id="trailer-wrapper"
+    class="fixed inset-0 w-full h-full bg-pink/60 backdrop-blur-lg flex flex-col items-center justify-center gap-6 hidden"
+  >
+    <YouTube
+      id="https://www.youtube.com/watch?v=j8fRIppQa1g"
+      class="max-w-[60vw] rounded-3xl w-full aspect-video shadow-xl trailer"
+      js-api
+      params="fs=1&modestbranding=1&showinfo=1&rel=0&enablejsap=1&origin=https://somosmupa.cl"
+    />
+    <button
+      id="close-trailer"
+      class="h-fit w-fit py-2 px-4 mx-auto bg-white rounded-lg shadow-md mb-4 font-source-code leading-none hover:bg-dark-grey hover:text-white duration-150 sticky bottom-4"
+      >Cerrar <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="inline-block"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
+      ></button
+    >
+  </div>
 </footer>
+
+<script>
+  const loadTrailer = () => {
+    const openTrailer = document.querySelector("#open-trailer");
+    const closeTrailer = document.querySelector("#close-trailer");
+    const trailerWrapper = document.querySelector("#trailer-wrapper");
+    const video = document.querySelector(".trailer");
+
+    const body = document.querySelector("body");
+
+    const toggleStyles = () => {
+      trailerWrapper?.classList.toggle("hidden");
+      body?.classList.toggle("overflow-hidden");
+    };
+
+    let player;
+
+    openTrailer?.addEventListener("click", async () => {
+      toggleStyles();
+      player = await video.getYTPlayer();
+    });
+
+    closeTrailer?.addEventListener("click", () => {
+      toggleStyles();
+      player.pauseVideo();
+    });
+  };
+
+  // Works with browsers that support View Transition API. ex. Chrome, Edge.
+  document.addEventListener("astro:page-load", loadTrailer);
+  // For Firefox and Safari that no support View Transitions
+  if (!document.startViewTransition) loadTrailer();
+</script>
